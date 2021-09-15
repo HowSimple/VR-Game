@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
          Vector3 move = transform.right * x + transform.forward * z;
          float speed = walkSpeed;
-           if( Input.GetButtonDown("Sprint")
+           if( Input.GetButtonDown("Sprint") )
         {
             
             speed = walkSpeed * sprintModifier;
