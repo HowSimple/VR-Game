@@ -6,7 +6,7 @@ public class Dash : MonoBehaviour
 {
     public bool isDashing = false;
     public float dashDistance = 50f;
-    public float dashDuration = 0.50f;
+    public float dashDuration = 2.50f;
 
     public Camera playerCam;
     public GameObject player;
@@ -21,8 +21,9 @@ public class Dash : MonoBehaviour
         
         if(!isDashing && Input.GetButtonDown("Sprint") )
         {
-            DashTowards(player.transform.forward);
-
+           // DashTowards(player.transform.forward);
+           Vector3 destination = player.transform.forward * dashDistance;
+           StartCoroutine(DashOverTime(player, destination, dashDuration));
 
            //startDashCoroutine(playerCam.transform.forward);
         }   
@@ -32,38 +33,24 @@ public class Dash : MonoBehaviour
     void DashTowards(Vector3 direction)
     {
       
-        player.GetComponent<CharacterController>().Move(Vector3.MoveTowards(player.transform.position ,direction, dashDistance) );
+       // /player.GetComponent<CharacterController>().Move(Vector3.MoveTowards(player.transform.forward ,direction, dashDistance) );
 
     }
 
-    public IEnumerator DashOverTime(GameObject target, Vector3 destination, float duration)
+    public IEnumerator DashOverTime(GameObject movingObject, Vector3 destination, float duration)
     {
         float timeElapsed = 0;
-        Vector3 start = target.transform.position;
+        Vector3 start = movingObject.transform.position;
 
         while (timeElapsed <duration)
         {
-            target.transform.position = Vector3.Lerp(start, destination, (timeElapsed/duration));
+            movingObject.transform.position = Vector3.Lerp(start, destination, (timeElapsed/duration));
             timeElapsed += Time.deltaTime;
-
+             yield return new WaitForEndOfFrame();
         }
-        /*isDashing = true;
-        float speed = player.GetComponent<PlayerMovement>().walkSpeed;
 
-       // float speed = player.GetComponent<PlayerMovement>().walkSpeed;
-       // player.PlayerMovement.walkSpeed *= 2;
-        speed *= 2;
-
-        */
-        yield return new WaitForSeconds(dashDuration);
-        
-
-
-
-
-       // speed /= 2;
-        isDashing = false;
-
+       movingObject.transform.position = destination;
+        //player.GetComponent<CharacterController>().Move(Vector3.MoveTowards(player.transform.forward ,direction, dashDistance)
 
     }
 }
