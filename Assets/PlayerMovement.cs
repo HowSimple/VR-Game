@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    /*public float speed = 20;
-    private Vector3 motion;
-    private Rigidbody rb;*/
-    public CharacterController controller;
+ 
+    public CharacterController player;
 
     public float walkSpeed = 10f;
     public float sprintModifier = 1.30f;
@@ -35,14 +33,9 @@ public class PlayerMovement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
          Vector3 move = transform.right * x + transform.forward * z;
          float speed = walkSpeed;
-           if( Input.GetButtonDown("Sprint") )
-        {
-            
-            speed = walkSpeed * sprintModifier;
-
-        }
+   
        
-         controller.Move(move* speed *Time.deltaTime);
+         player.Move(move* speed *Time.deltaTime);
         if( Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
@@ -51,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
 
-        controller.Move(velocity * Time.deltaTime);
+        player.Move(velocity * Time.deltaTime);
 
 
     }
