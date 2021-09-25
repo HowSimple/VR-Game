@@ -1125,7 +1125,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b05e77d02b66791458cb858eeb92c9c5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: -1.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b05e77d02b66791458cb858eeb92c9c5,
         type: 3}
@@ -6219,7 +6219,7 @@ GameObject:
   - component: {fileID: 1577731846}
   - component: {fileID: 1577731845}
   - component: {fileID: 1577731848}
-  - component: {fileID: 1577731850}
+  - component: {fileID: 1577731849}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6308,7 +6308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 100
   playerBody: {fileID: 1873578230}
---- !u!114 &1577731850
+--- !u!114 &1577731849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6322,9 +6322,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   range: 100
-  muzzle: {fileID: 550961399}
   fpsCam: {fileID: 1577731846}
   muzzleFlash: {fileID: 1388658982}
+  projectilesPerShot: 9
+  spreadAngle: 10
+  maxSpread: 0.04
 --- !u!1 &1746174491
 GameObject:
   m_ObjectHideFlags: 0

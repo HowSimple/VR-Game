@@ -4,25 +4,31 @@ public class Gun : MonoBehaviour {
 
     public float damage = 10f;
     public float range = 100f;
-
+   
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
-    void Update() {
+
+    // TODO:  public int magazineSize;
+    // TODO:  public int ammoCapacity;
+    // TODO:  public float reloadTime;
+    // TODO:  public float rateOfFire; 
+
+   protected void Update() {
         if (Input.GetButtonDown("Fire"))
         {
-            Shoot();
+            Shoot(fpsCam.transform.position, fpsCam.transform.forward);
         }
     }
-    void Shoot() {
+   public void Shoot(Vector3 position, Vector3 direction ) {
         RaycastHit hit;
         muzzleFlash.Play();
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+        if (Physics.Raycast(position, direction, out hit, range))
         {
             Debug.Log(hit.transform.name);
-           Health h =  hit.transform.GetComponent<Health>();
-            if (h != null)
+           Health targetHealth =  hit.transform.GetComponent<Health>();
+            if (targetHealth != null)
             {
-                h.takeDamage(damage);
+                targetHealth.takeDamage(damage);
             }
 
         }
