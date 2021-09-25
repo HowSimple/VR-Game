@@ -7,6 +7,7 @@ public class Gun : MonoBehaviour {
    
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
+    public GameObject impactEffect;
 
     // TODO:  public int magazineSize;
     // TODO:  public int ammoCapacity;
@@ -17,6 +18,7 @@ public class Gun : MonoBehaviour {
         if (Input.GetButtonDown("Fire"))
         {
             Shoot(fpsCam.transform.position, fpsCam.transform.forward);
+            
         }
     }
    public void Shoot(Vector3 position, Vector3 direction ) {
@@ -25,12 +27,16 @@ public class Gun : MonoBehaviour {
         if (Physics.Raycast(position, direction, out hit, range))
         {
             Debug.Log(hit.transform.name);
+            
            Health targetHealth =  hit.transform.GetComponent<Health>();
             if (targetHealth != null)
             {
                 targetHealth.takeDamage(damage);
             }
+            Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
 
         }
+
+        
     }
 }

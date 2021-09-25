@@ -12,7 +12,39 @@ ModelImporter:
   - first:
       74: -8429995278180102365
     second: ShotgunArmature|Reload
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Barrels
+    second: {fileID: 2100000, guid: dc263f8d5174d45c0a98e6489eca16c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black
+    second: {fileID: 2100000, guid: a8f127f4a0a19407db2b784d5ae1b637, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BulletRed
+    second: {fileID: -1671706992188033152, guid: d7e8121bb02036b42b9609f1f78e5f87,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BulletYellow
+    second: {instanceID: 0}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DarkMetal
+    second: {fileID: 2100000, guid: 80aca137a2109463fb6c86f09a521374, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Trigger
+    second: {fileID: -1671706992188033152, guid: d7e8121bb02036b42b9609f1f78e5f87,
+      type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
