@@ -33,7 +33,8 @@ public class Gun : MonoBehaviour {
             {
                 targetHealth.takeDamage(damage);
             }
-            Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(impact, 2f);
 
         }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Dash : MonoBehaviour
 {
     public bool isDashing = false;
-    public float dashDistance = 5f;
+    public float dashDistance = 10f;
     public float dashDuration = 2.50f;
 
     public Camera playerCam;
@@ -35,13 +35,13 @@ public class Dash : MonoBehaviour
 
         while (timeElapsed <duration)
         {
-            //movingObject.transform.position = Vector3.Lerp(start, destination, (timeElapsed/duration));
-            player.GetComponent<CharacterController>().Move(Vector3.Lerp(start, destination, (timeElapsed/duration)));
+            movingObject.transform.position = Vector3.Lerp(start, destination, (timeElapsed/duration));
+            //player.GetComponent<CharacterController>().Move(Vector3.Lerp(start, destination, (timeElapsed/duration)));
             timeElapsed += Time.deltaTime;
              yield return new WaitForEndOfFrame();
         }
-         player.GetComponent<CharacterController>().Move(destination);
-       //movingObject.transform.position = destination;
+         //player.GetComponent<CharacterController>().Move(destination);
+       movingObject.transform.position = destination;
         //player.GetComponent<CharacterController>().Move(Vector3.MoveTowards(player.transform.forward ,direction, dashDistance)
 
     }
