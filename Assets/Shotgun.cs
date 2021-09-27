@@ -38,32 +38,5 @@ public class Shotgun : Gun
         }
 
     }
-     void Spread2(){
-        float verticalOffset = 5f;
-        float horizontalOffset = 5f;
-        for (int i = 0; i < projectilesPerShot; i++)
-        {
-            float lerpValue = (float) i / 12f; 
-            // horizontal = Quaternion.AngleAxis(Mathf.Lerp(-horizontalOffset, horizontalOffset, lerpValue), Vector3.up) 
-            //* (fpsCam.transform.TransformPoint(0,1, 0).position);
-
-
-            
-            Vector3 spreadDirection = fpsCam.transform.forward;
-            //spreadDirection.x += Random.Range(-maxSpread, maxSpread);
-            spreadDirection.y += Random.Range(-maxSpread, maxSpread);
-           // spreadDirection.z += Random.Range(-maxSpread, maxSpread);
-
-        
-            Color color = new Color(55,55,55);
-           // Debug.DrawLine(spreadDirection, new Vector3(5, 0, 0), color);
-
-            Shoot(fpsCam.transform.position, spreadDirection);      
-
-
-
-
-        }
-
-    }
+     
 }
