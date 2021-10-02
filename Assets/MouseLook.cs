@@ -25,16 +25,8 @@ public class MouseLook : MonoBehaviour
         Debug.Log("Look");
     }
 
-     public GameObject heldWeapon;
-    public void Fire(InputAction.CallbackContext context)
-    {
-        Vector3 position = fpsCam.transform.position;
-        Vector3 direction = fpsCam.transform.forward;
-        
-        heldWeapon.GetComponent<Gun>().Shoot(position, direction);
-        //heldWeapon.Shoot();
-        Debug.Log("Fire!");
-    }
+  
+   
 
     // Start is called before the first frame update
     void Start()

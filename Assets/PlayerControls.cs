@@ -57,6 +57,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""032acfe2-676a-46ec-a027-aa86e618cdd7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -294,7 +302,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8255d333-5683-4943-a58a-ccb207ff1dce"",
-                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""path"": ""<OculusTouchController>{RightHand}/triggerPressed"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""XR"",
@@ -354,6 +362,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec24da98-ed38-49e9-b33b-f5f7cb90fc00"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -936,6 +955,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Exit = m_Player.FindAction("Exit", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1002,6 +1022,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Exit;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1011,6 +1032,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Exit => m_Wrapper.m_Player_Exit;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1035,6 +1057,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Exit.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExit;
+                @Exit.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExit;
+                @Exit.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExit;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1054,6 +1079,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Exit.started += instance.OnExit;
+                @Exit.performed += instance.OnExit;
+                @Exit.canceled += instance.OnExit;
             }
         }
     }
@@ -1215,6 +1243,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -44,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "032acfe2-676a-46ec-a027-aa86e618cdd7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -281,7 +289,7 @@
                 {
                     "name": "",
                     "id": "8255d333-5683-4943-a58a-ccb207ff1dce",
-                    "path": "<XRController>/{PrimaryAction}",
+                    "path": "<OculusTouchController>{RightHand}/triggerPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
@@ -341,6 +349,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ec24da98-ed38-49e9-b33b-f5f7cb90fc00",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

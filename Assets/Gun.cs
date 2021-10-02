@@ -8,9 +8,10 @@ public class Gun : MonoBehaviour {
     public float maxSpread = 0;
     
     public float projectilesPerShot = 1;
-    public Camera fpsCam;
+    
 
     public ParticleSystem muzzleFlash;
+    public GameObject muzzle;
     public GameObject impactEffect;
 
     public AudioClip gunshotAudio;
@@ -20,14 +21,14 @@ public class Gun : MonoBehaviour {
     // TODO:  public int ammoCapacity;
     // TODO:  public float reloadTime;
     // TODO:  public float rateOfFire; 
-     public void OnFire(InputAction.CallbackContext context)
+     public void Fire(InputAction.CallbackContext context)
     {
-        Shoot(fpsCam.transform.position, fpsCam.transform.forward);
-        
-        Vector3 start = fpsCam.transform.position;
+        //Shoot(fpsCam.transform.position, fpsCam.transform.forward);
+        Shoot(transform.position, transform.forward);
+        Vector3 start = transform.position;
         for (int i = 0; i < projectilesPerShot; i++)
         {   
-            Vector3 spreadDirection = fpsCam.transform.forward;
+            Vector3 spreadDirection = transform.forward;
             spreadDirection.x += Random.Range(-maxSpread, maxSpread);
             spreadDirection.y += Random.Range(-maxSpread, maxSpread);
             spreadDirection.z += Random.Range(-maxSpread, maxSpread);
@@ -42,8 +43,11 @@ public class Gun : MonoBehaviour {
       
         RaycastHit hit;
         muzzleFlash.Play();
-        gunAudioSource.volume = 0.4f;
+        gunAudioSource.volume = 0.2f;
         gunAudioSource.PlayOneShot(gunshotAudio);
+        Debug.DrawRay(position, direction* range, Color.green);
+        
+        Debug.DrawLine(position,direction, Color.black, 10f)    ;
         if (Physics.Raycast(position, direction, out hit, range))
         {
             Debug.Log(hit.transform.name);
