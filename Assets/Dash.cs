@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Dash : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class Dash : MonoBehaviour
     public Camera playerCam;
     public GameObject player;
 
-    void Update()
+    /*void Update()
     {
         
         if(!isDashing && Input.GetButtonDown("Sprint") )
@@ -25,6 +26,21 @@ public class Dash : MonoBehaviour
         }   
 
         
+    }
+    */
+       public void DashForward(InputAction.CallbackContext context)
+    {
+        Debug.Log("Dash");
+        
+        
+           Vector3 destination = player.transform.forward * dashDistance;
+        
+           StartCoroutine(DashOverTime(player, destination, dashDuration));
+
+
+        
+
+
     }
   
 
