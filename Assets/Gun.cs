@@ -9,8 +9,12 @@ public class Gun : MonoBehaviour {
     
     public float projectilesPerShot = 1;
     public Camera fpsCam;
+
     public ParticleSystem muzzleFlash;
     public GameObject impactEffect;
+
+    public AudioClip gunshotAudio;
+    public AudioSource gunAudioSource;
 
     // TODO:  public int magazineSize;
     // TODO:  public int ammoCapacity;
@@ -33,19 +37,13 @@ public class Gun : MonoBehaviour {
 
         Debug.Log("Fire!");
     }
-   protected void Update() {
-        /*if (Input.GetButtonDown("Fire"))
-        {
-            Shoot(fpsCam.transform.position, fpsCam.transform.forward);
-            
-        }
-        */
-    }
+   
    public void Shoot(Vector3 position,Vector3 direction ) {
-        //Vector3 direction = fpsCam.transform.position;
-        //Vector3 direction = fpsCam.transform.forward;
+      
         RaycastHit hit;
         muzzleFlash.Play();
+        gunAudioSource.volume = 0.4f;
+        gunAudioSource.PlayOneShot(gunshotAudio);
         if (Physics.Raycast(position, direction, out hit, range))
         {
             Debug.Log(hit.transform.name);
