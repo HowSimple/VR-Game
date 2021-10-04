@@ -189,6 +189,17 @@
                 },
                 {
                     "name": "",
+                    "id": "a956b4f6-7373-43f5-b922-5c71060e66bc",
+                    "path": "<XRController>{RightHand}/primary2DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "XR",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "c1f7a91b-d0fd-4a62-997e-7fb9b69bf235",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
@@ -322,7 +333,7 @@
                 {
                     "name": "",
                     "id": "3fbc2f29-f3eb-4df3-808e-93f71c30125a",
-                    "path": "<XRController>{LeftHand}/gripPressed",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
@@ -356,6 +367,17 @@
                     "name": "",
                     "id": "ec24da98-ed38-49e9-b33b-f5f7cb90fc00",
                     "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f546d93d-104d-4b40-b9c6-881f5b136f5f",
+                    "path": "<XRController>{LeftHand}/menuButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
