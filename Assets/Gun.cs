@@ -1,7 +1,9 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
-
+using System;
 public class Gun : MonoBehaviour
 {
 
@@ -17,51 +19,71 @@ public class Gun : MonoBehaviour
     public AudioClip gunshotAudio;
     public AudioSource gunAudioSource;
 
-    // TODO:  public int magazineSize;
-    // TODO:  public int ammoCapacity;
-    // TODO:  public float reloadTime;
-    // TODO:  public float rateOfFire; 
+    public int loadedAmmo;
+    public int magazineSize;
+    public int carriedAmmo;
+    
+    public float reloadTime;
+    
+    public float rateOfFire;
+    public bool allowFire;
+    public void Start() { allowFire = true; }
     public void Fire(InputAction.CallbackContext context)
     {
         //Shoot(fpsCam.transform.position, fpsCam.transform.forward);
-        Shoot(transform.position, transform.forward);
+        StartCoroutine(Shoot(transform.position, transform.forward));
         Vector3 start = transform.position;
     
         Debug.Log("Fire!");
     }
-
-    public void Shoot(Vector3 position, Vector3 direction)
+    public void Reload()
     {
 
-        for (int i = 0; i < projectilesPerShot; i++)
-        {
-            Vector3 spreadDirection = transform.forward;
-            spreadDirection.x += Random.Range(-maxSpread, maxSpread);
-            spreadDirection.y += Random.Range(-maxSpread, maxSpread);
-            spreadDirection.z += Random.Range(-maxSpread, maxSpread);
-
-            RaycastHit hit;
-            muzzleFlash.Play();
-            gunAudioSource.volume = 0.2f;
-            gunAudioSource.PlayOneShot(gunshotAudio);
-            Debug.DrawRay(position, spreadDirection * range, Color.green);
-
-            Debug.DrawLine(position, spreadDirection, Color.black, 10f);
-            if (Physics.Raycast(position, spreadDirection, out hit, range))
-            {
-                Debug.Log(hit.transform.name);
-
-                Health targetHealth = hit.transform.GetComponent<Health>();
-                if (targetHealth != null)
-                {
-                    targetHealth.takeDamage(damage);
-                }
-                GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
-                Destroy(impact, 2f);
-
-            }
-        }
-
-
+        int ammo = Math.Min(carriedAmmo, magazineSize);
+        carriedAmmo -= ammo;
+        loadedAmmo = ammo;
     }
+    public IEnumerator Shoot(Vector3 position, Vector3 direction)
+    {
+
+        if (allowFire)
+        {
+            allowFire = false;
+
+            for (int i = 0; i < projectilesPerShot; i++)
+            {
+                Vector3 spreadDirection = transform.forward;
+                spreadDirection.x += UnityEngine.Random.Range(-maxSpread, maxSpread);
+                spreadDirection.y += UnityEngine.Random.Range(-maxSpread, maxSpread);
+                spreadDirection.z += UnityEngine.Random.Range(-maxSpread, maxSpread);
+
+                RaycastHit hit;
+                muzzleFlash.Play();
+                gunAudioSource.volume = 0.2f;
+                gunAudioSource.PlayOneShot(gunshotAudio);
+                Debug.DrawRay(position, spreadDirection * range, Color.green);
+
+                Debug.DrawLine(position, spreadDirection, Color.black, 10f);
+                if (Physics.Raycast(position, spreadDirection, out hit, range))
+                {
+                    Debug.Log(hit.transform.name);
+
+                    Health targetHealth = hit.transform.GetComponent<Health>();
+                    if (targetHealth != null)
+                    {
+                        targetHealth.takeDamage(damage);
+                    }
+                    GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                    Destroy(impact, 2f);
+
+                }
+            }
+
+            
+        }
+        yield return new WaitForSeconds(rateOfFire);
+        allowFire = true;
+    }
+        
+        
 }
