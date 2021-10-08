@@ -9,26 +9,13 @@ public class Dash : MonoBehaviour
     public float dashDistance = 10f;
     public float dashDuration = 2.50f;
 
+
     public Camera playerCam;
     public GameObject player;
 
-    /*void Update()
-    {
-        
-        if(!isDashing && Input.GetButtonDown("Sprint") )
-        {
-           
-           Vector3 destination = player.transform.forward * dashDistance;
-        
-           StartCoroutine(DashOverTime(player, destination, dashDuration));
 
-
-        }   
-
-        
-    }
-    */
-       public void DashForward(InputAction.CallbackContext context)
+    // TODO: move to player input controller class
+    public void DashForward(InputAction.CallbackContext context)
     {
         Debug.Log("Dash");
         
