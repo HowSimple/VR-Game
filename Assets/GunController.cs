@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    IShooter weapon;
+    Gun activeWeapon;
     
     
    
-    public void ShootGun() => weapon.Shoot();
+    public void ShootGun() => activeWeapon.Shoot();
+
+
 }

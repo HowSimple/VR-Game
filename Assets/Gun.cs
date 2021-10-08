@@ -12,6 +12,7 @@ public class Gun : MonoBehaviour
     public float maxSpread = 0;
     public float projectilesPerShot = 1;
 
+
     public ParticleSystem muzzleFlash;
     public GameObject muzzle;
     public GameObject impactEffect;
@@ -23,15 +24,16 @@ public class Gun : MonoBehaviour
     public int magazineSize;
     public int carriedAmmo;
     
+
     public float reloadTime;
-    
+
     public float rateOfFire;
     public bool allowFire;
     public void Start() { allowFire = true; }
     public void Fire(InputAction.CallbackContext context)
     {
-        //Shoot(fpsCam.transform.position, fpsCam.transform.forward);
-        StartCoroutine(Shoot(transform.position, transform.forward));
+        
+        StartCoroutine(Shoot());
         Vector3 start = transform.position;
     
         Debug.Log("Fire!");
@@ -43,16 +45,17 @@ public class Gun : MonoBehaviour
         carriedAmmo -= ammo;
         loadedAmmo = ammo;
     }
-    public IEnumerator Shoot(Vector3 position, Vector3 direction)
-    {
 
+    public IEnumerator Shoot()
+    {
+        
         if (allowFire)
         {
             allowFire = false;
 
             for (int i = 0; i < projectilesPerShot; i++)
             {
-                Vector3 spreadDirection = transform.forward;
+                Vector3 spreadDirection = muzzle.transform.forward;
                 spreadDirection.x += UnityEngine.Random.Range(-maxSpread, maxSpread);
                 spreadDirection.y += UnityEngine.Random.Range(-maxSpread, maxSpread);
                 spreadDirection.z += UnityEngine.Random.Range(-maxSpread, maxSpread);
@@ -61,10 +64,8 @@ public class Gun : MonoBehaviour
                 muzzleFlash.Play();
                 gunAudioSource.volume = 0.2f;
                 gunAudioSource.PlayOneShot(gunshotAudio);
-                Debug.DrawRay(position, spreadDirection * range, Color.green);
-
-                Debug.DrawLine(position, spreadDirection, Color.black, 10f);
-                if (Physics.Raycast(position, spreadDirection, out hit, range))
+                Debug.DrawRay(muzzle.transform.position, spreadDirection * range, Color.green);
+                if (Physics.Raycast(muzzle.transform.position, spreadDirection, out hit, range))
                 {
                     Debug.Log(hit.transform.name);
 
