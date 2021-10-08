@@ -28,7 +28,7 @@ public class Gun : MonoBehaviour
     public float reloadTime;
 
     public float rateOfFire;
-    public bool allowFire;
+    private bool allowFire = true;
     public void Start() { allowFire = true; }
     public void Fire(InputAction.CallbackContext context)
     {
@@ -51,6 +51,7 @@ public class Gun : MonoBehaviour
         
         if (allowFire)
         {
+            
             allowFire = false;
 
             for (int i = 0; i < projectilesPerShot; i++)
@@ -79,7 +80,7 @@ public class Gun : MonoBehaviour
 
                 }
             }
-
+            Debug.Log("Fire!");
             
         }
         yield return new WaitForSeconds(rateOfFire);

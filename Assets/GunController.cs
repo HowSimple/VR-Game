@@ -4,11 +4,27 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    Gun activeWeapon;
-    
-    
+    public Gun activeWeapon;
+    public GameObject weaponObject;
+    void Start(){
+               
+        //weaponObject = GameObject.Find("Enemy Rifle");
+        
+        //weaponObject = transform.Find("Enemy Rifle").gameObject;
+
+        activeWeapon =  weaponObject.GetComponent<Gun>();
+
+        StartCoroutine(ShootGun());
+        
+
+
+    }
+
    
-    public void ShootGun() => activeWeapon.Shoot();
+    public IEnumerator ShootGun() => activeWeapon.Shoot();
 
+    void Update(){
+        StartCoroutine(ShootGun());
 
+    }
 }
