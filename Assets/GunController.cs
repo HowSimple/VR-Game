@@ -6,25 +6,25 @@ public class GunController : MonoBehaviour
 {
     public Gun activeWeapon;
     public GameObject weaponObject;
-    void Start(){
-               
-        //weaponObject = GameObject.Find("Enemy Rifle");
-        
-        //weaponObject = transform.Find("Enemy Rifle").gameObject;
+    void Start() {
 
-        activeWeapon =  weaponObject.GetComponent<Gun>();
 
-        StartCoroutine(ShootGun());
-        
+        activeWeapon = weaponObject.GetComponent<Gun>();
+
+       
 
 
     }
 
-   
-    public IEnumerator ShootGun() => activeWeapon.Shoot();
+
+    public void ShootGun()
+    {
+        StartCoroutine(activeWeapon.Shoot());
+    }
 
     void Update(){
-        StartCoroutine(ShootGun());
+        //if(activeWeapon.allowFire)
+            ShootGun();
 
     }
 }

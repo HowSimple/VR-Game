@@ -28,13 +28,12 @@ public class Gun : MonoBehaviour
     public float reloadTime;
 
     public float rateOfFire;
-    private bool allowFire = true;
+    public bool allowFire = true;
     public void Start() { allowFire = true; }
     public void Fire(InputAction.CallbackContext context)
     {
         
         StartCoroutine(Shoot());
-        Vector3 start = transform.position;
     
         Debug.Log("Fire!");
     }
@@ -82,10 +81,14 @@ public class Gun : MonoBehaviour
             }
             Debug.Log("Fire!");
             
+            yield return new WaitForSeconds(rateOfFire);
+            allowFire = true;
         }
-        yield return new WaitForSeconds(rateOfFire);
-        allowFire = true;
+        else yield return null;
+        
+        
     }
+
         
         
 }

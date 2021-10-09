@@ -6,14 +6,14 @@ using UnityEngine.XR.Interaction.Toolkit;
 using System;
 public class PlayerInputController : MonoBehaviour
 {
-    GunController gunController;
+    public GunController gunController;
     
 
     
     public void Fire(InputAction.CallbackContext context)
     {
         
-        StartCoroutine(gunController.ShootGun());
+        //GunController.ShootGun();
         Vector3 start = transform.position;
     
         Debug.Log("Fire!");
