@@ -75,7 +75,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Secondary"",
+                    ""name"": ""SecondaryFire"",
                     ""type"": ""Button"",
                     ""id"": ""3671ad20-4a7a-44ec-a6c3-92f14273b158"",
                     ""expectedControlType"": ""Button"",
@@ -352,7 +352,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Secondary"",
+                    ""action"": ""SecondaryFire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1036,7 +1036,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Exit = m_Player.FindAction("Exit", throwIfNotFound: true);
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
-        m_Player_Secondary = m_Player.FindAction("Secondary", throwIfNotFound: true);
+        m_Player_SecondaryFire = m_Player.FindAction("SecondaryFire", throwIfNotFound: true);
         m_Player_Newaction1 = m_Player.FindAction("New action1", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1106,7 +1106,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Exit;
     private readonly InputAction m_Player_Menu;
-    private readonly InputAction m_Player_Secondary;
+    private readonly InputAction m_Player_SecondaryFire;
     private readonly InputAction m_Player_Newaction1;
     public struct PlayerActions
     {
@@ -1119,7 +1119,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Exit => m_Wrapper.m_Player_Exit;
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
-        public InputAction @Secondary => m_Wrapper.m_Player_Secondary;
+        public InputAction @SecondaryFire => m_Wrapper.m_Player_SecondaryFire;
         public InputAction @Newaction1 => m_Wrapper.m_Player_Newaction1;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1151,9 +1151,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Menu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
-                @Secondary.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondary;
-                @Secondary.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondary;
-                @Secondary.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondary;
+                @SecondaryFire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryFire;
+                @SecondaryFire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryFire;
+                @SecondaryFire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryFire;
                 @Newaction1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNewaction1;
                 @Newaction1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNewaction1;
                 @Newaction1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNewaction1;
@@ -1182,9 +1182,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Menu.started += instance.OnMenu;
                 @Menu.performed += instance.OnMenu;
                 @Menu.canceled += instance.OnMenu;
-                @Secondary.started += instance.OnSecondary;
-                @Secondary.performed += instance.OnSecondary;
-                @Secondary.canceled += instance.OnSecondary;
+                @SecondaryFire.started += instance.OnSecondaryFire;
+                @SecondaryFire.performed += instance.OnSecondaryFire;
+                @SecondaryFire.canceled += instance.OnSecondaryFire;
                 @Newaction1.started += instance.OnNewaction1;
                 @Newaction1.performed += instance.OnNewaction1;
                 @Newaction1.canceled += instance.OnNewaction1;
@@ -1351,7 +1351,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnExit(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
-        void OnSecondary(InputAction.CallbackContext context);
+        void OnSecondaryFire(InputAction.CallbackContext context);
         void OnNewaction1(InputAction.CallbackContext context);
     }
     public interface IUIActions
