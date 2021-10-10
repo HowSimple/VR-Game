@@ -1,4 +1,4 @@
-﻿// 
+﻿//  
 // https://faramira.com/enemy-behaviour-with-finite-state-machine-using-csharp-delegates-in-unity/
 
 using System.Collections;
@@ -19,12 +19,6 @@ public class EnemyNPC : MonoBehaviour
     public Character npc;
 
     #region NPC data
-    // The maximum speed at which the enemy NPC can move.
-    //public float mMaxSpeed = controller.walkSpeed;
-
-    // The walking speed of the enemy NPC
-    //public float mWalkSpeed = 1.5f;
-
     // The maximum viweing distance of the enemy NPC
     public float mViewingDistance = 10.0f;
 
@@ -70,6 +64,7 @@ public class EnemyNPC : MonoBehaviour
 
     // The reference to the character controller.
     CharacterController controller;
+    GunController gunController;
 
     // The total damage count.
     int mDamageCount = 0;
@@ -131,7 +126,7 @@ public class EnemyNPC : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mAnimator = transform.GetChild(0).GetComponent<Animator>();
+        //mAnimator = transform.GetChild(0).GetComponent<Animator>();
         controller = npc.GetComponent<CharacterController>();
 
         if (!mEyeLookAt)
@@ -230,17 +225,17 @@ public class EnemyNPC : MonoBehaviour
         {
             case StateTypes.ATTACK:
                 {
-                    mAnimator.SetBool("Attack", true);
+                    //mAnimator.SetBool("Attack", true);
                     break;
                 }
             case StateTypes.DIE:
                 {
-                    mAnimator.SetTrigger("Die");
+                    //mAnimator.SetTrigger("Die");
                     break;
                 }
             case StateTypes.DAMAGE:
                 {
-                    mAnimator.SetTrigger("Damage");
+                    //mAnimator.SetTrigger("Damage");
                     break;
                 }
         }
@@ -251,7 +246,7 @@ public class EnemyNPC : MonoBehaviour
         {
             case StateTypes.ATTACK:
                 {
-                    mAnimator.SetBool("Attack", false);
+                    //mAnimator.SetBool("Attack", false);
                     break;
                 }
             case StateTypes.DIE:
@@ -270,8 +265,8 @@ public class EnemyNPC : MonoBehaviour
                 }
             case StateTypes.CHASE:
                 {
-                    mAnimator.SetFloat("PosZ", 0.0f);
-                    mAnimator.SetFloat("PosX", 0.0f);
+                    //mAnimator.SetFloat("PosZ", 0.0f);
+                    //mAnimator.SetFloat("PosX", 0.0f);
                     break;
                 }
         }
@@ -290,7 +285,7 @@ public class EnemyNPC : MonoBehaviour
         };
         state.OnExitDelegate += delegate ()
         {
-            StopAnimation(StateTypes.IDLE);
+            //StopAnimation(StateTypes.IDLE);
             Debug.Log("OnExit - IDLE");
         };
 
@@ -336,7 +331,7 @@ public class EnemyNPC : MonoBehaviour
         state.OnExitDelegate += delegate ()
         {
             Debug.Log("OnExit - ATTACK");
-            StopAnimation(StateTypes.ATTACK);
+            //StopAnimation(StateTypes.ATTACK);
         };
 
         state.OnUpdateDelegate += delegate ()
@@ -359,7 +354,7 @@ public class EnemyNPC : MonoBehaviour
                     if (mDistanceToNearestEnemy < mAttackDistance)
                     {
                         //ApplyAttack();
-                        PlayAnimation(StateTypes.ATTACK);
+                        //PlayAnimation(StateTypes.ATTACK);
                     }
                     else if (mDistanceToNearestEnemy > mAttackDistance && mDistanceToNearestEnemy < mViewingDistance)
                     {
