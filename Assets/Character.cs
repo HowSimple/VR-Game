@@ -4,26 +4,39 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    GunController gunController;
-    CharacterController characterController;
+    public GunController gunController;
+    public CharacterController characterController;
     public float walkSpeed = 10f;
     public float sprintModifier = 1.30f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
-    public Transform groundCheck;
+    //public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
-    public float viewDistance = 10f;
+    public float viewDistance = 50f;
     public float maxViewAngle = 60f;
 
     public float turnSpeed = 500f;
     
+    public GameObject player;
     //public string[] enemyIDs;
     public Transform headPosition;
     public Vector3 velocity;
-
-
+    public void Start()
+    {
+        //gunController = gameObject.GetComponent<GunController>();   
+    }
+    public void Update()
+    {
+        transform.LookAt(player.transform);
+        //MoveTowards(player.transform.position, walkSpeed);
+        transform.position += transform.forward * walkSpeed * Time.deltaTime;
+        if (Vector3.Distance(transform.position, player.transform.position) <= viewDistance)
+            gunController.ShootGun();
+            //GetComponent<GunController>().ShootGun();
+            ;
+    }
     public void Move(float speed)
     {
         Vector3 forward = transform.TransformDirection(Vector3.forward).normalized;
