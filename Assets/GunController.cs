@@ -24,7 +24,7 @@ public class GunController : MonoBehaviour
 
     void Update(){
         //if(activeWeapon.allowFire)
-            ShootGun();
+            //ShootGun();
 
     }
 }
