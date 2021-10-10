@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
 
-    public Transform groundCheck;
+    //public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
@@ -47,18 +47,19 @@ public class PlayerMovement : MonoBehaviour
    
     bool isGrounded()
     {
-        bool groundcheck = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        //bool groundcheck = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
        
-        return groundcheck;
+        return true;
     }
     private void Update()
     {
-         if (  isGrounded() && velocity.y < 0)
+        /* if (  isGrounded() && velocity.y < 0)
         {
             velocity.y = -2f;
         }
+        */
 
-        
+
         Vector3 moveDirection = transform.right * currentMove.x + transform.forward * currentMove.y;
         player.Move( moveDirection * walkSpeed * Time.deltaTime);
 
@@ -79,33 +80,6 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    /*void FixedUpdate()
-    {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        if ( isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
-        //float x = Input.GetAxis("Horizontal");
-        //float z = Input.GetAxis("Vertical");
-
-
-         Vector3 move = transform.right * movement.x + transform.forward * movement.y;
-         float speed = walkSpeed;   
-   
-       
-         player.Move(move* speed *Time.deltaTime);
-       
-        velocity.y += gravity * Time.deltaTime;
-
-        player.Move(velocity * Time.deltaTime);
-
-
-    }
-
-
-*/
-
-   
+ 
 
 }
