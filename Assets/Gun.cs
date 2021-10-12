@@ -32,10 +32,12 @@ public class Gun : MonoBehaviour
     public void Start() { allowFire = true; }
     public void Fire(InputAction.CallbackContext context)
     {
-        
-        StartCoroutine(Shoot());
-    
-        Debug.Log("Fire!");
+        if (context.started)
+        {
+            StartCoroutine(Shoot());
+
+            Debug.Log("Fire!");
+        }
     }
     public void Reload()
     {
@@ -44,8 +46,19 @@ public class Gun : MonoBehaviour
         carriedAmmo -= ammo;
         loadedAmmo = ammo;
     }
-
-    public IEnumerator Shoot()
+    private Vector3 Spread()
+    {
+        Vector3 spreadDirection = muzzle.transform.forward;
+        spreadDirection.x += UnityEngine.Random.Range(-maxSpread, maxSpread);
+        spreadDirection.y += UnityEngine.Random.Range(-maxSpread, maxSpread);
+        spreadDirection.z += UnityEngine.Random.Range(-maxSpread, maxSpread);
+        return spreadDirection;
+    }
+    private void ShootRay()
+    { 
+        
+    }
+    public virtual IEnumerator Shoot()
     {
         
         if (allowFire)
@@ -55,10 +68,11 @@ public class Gun : MonoBehaviour
 
             for (int i = 0; i < projectilesPerShot; i++)
             {
-                Vector3 spreadDirection = muzzle.transform.forward;
-                spreadDirection.x += UnityEngine.Random.Range(-maxSpread, maxSpread);
-                spreadDirection.y += UnityEngine.Random.Range(-maxSpread, maxSpread);
-                spreadDirection.z += UnityEngine.Random.Range(-maxSpread, maxSpread);
+                ///ShootRay(S)
+                Vector3 spreadDirection = Spread();
+                //spreadDirection.x += UnityEngine.Random.Range(-maxSpread, maxSpread);
+               // spreadDirection.y += UnityEngine.Random.Range(-maxSpread, maxSpread);
+               // spreadDirection.z += UnityEngine.Random.Range(-maxSpread, maxSpread);
 
                 RaycastHit hit;
                 muzzleFlash.Play();
