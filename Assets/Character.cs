@@ -23,20 +23,19 @@ public class Character : MonoBehaviour
     //public string[] enemyIDs;
     public Transform headPosition;
     public Vector3 velocity;
-    public void Start()
-    {
-        //gunController = gameObject.GetComponent<GunController>();   
-    }
+   
     public void Update()
     {
         transform.LookAt(player.transform);
-        //MoveTowards(player.transform.position, walkSpeed);
-        transform.position += transform.forward * walkSpeed * Time.deltaTime;
+        MoveTowards(player.transform.position);
+        //transform.position += transform.forward * walkSpeed * Time.deltaTime;
         if (Vector3.Distance(transform.position, player.transform.position) <= viewDistance)
             gunController.ShootGun();
-            //GetComponent<GunController>().ShootGun();
-            ;
+            
     }
+    public void Move2(float speed)
+    {}
+
     public void Move(float speed)
     {
         Vector3 forward = transform.TransformDirection(Vector3.forward).normalized;
@@ -46,7 +45,7 @@ public class Character : MonoBehaviour
 
     }
 
-    public bool MoveTowards(Vector3 destination, float speed)
+    public bool MoveTowards(Vector3 destination)
     {
         if(true)
         {
@@ -57,6 +56,7 @@ public class Character : MonoBehaviour
             Vector3 desiredDirection = (destination - pos).normalized;
             Vector3 forward = Vector3.Scale(desiredDirection, new Vector3(1, 0, 1)).normalized;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(forward), turnSpeed * Time.deltaTime);
+            Move(walkSpeed);
         }
         return true;
     }
