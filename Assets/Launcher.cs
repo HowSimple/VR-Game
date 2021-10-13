@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class Launcher : Gun
 {
-    public Rigidbody projectile;
+    //public Rigidbody projectile;
+    public GameObject projectile;
    // public GameObject muzzle;
     public float initialSpeed;
     private void ShootProjectile()
     {
-        Rigidbody p = Instantiate(projectile, muzzle.transform.position, muzzle.transform.rotation) ;
+        GameObject p = Instantiate(projectile, muzzle.transform.position, muzzle.transform.rotation) ;
+        p.SetActive(true);
        // p.velocity = muzzle.transform.forward * initialSpeed;
         p.GetComponent<Rigidbody>().velocity = p.transform.forward * initialSpeed;
        p.GetComponent<Rigidbody>().freezeRotation = true;
