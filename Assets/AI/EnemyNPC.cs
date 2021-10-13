@@ -480,7 +480,7 @@ public class EnemyNPC : MonoBehaviour
             }
             //ApplyChase
             //mCurrentAnimationIndex
-            npc.MoveTowards(mNearestEnemy.transform.position, npc.walkSpeed);
+            npc.MoveTowards(mNearestEnemy.transform.position);
             PlayAnimation(StateTypes.CHASE);
         };
     }
