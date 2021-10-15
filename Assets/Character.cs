@@ -6,6 +6,8 @@ public class Character : MonoBehaviour
 {
     public GunController gunController;
     public CharacterController characterController;
+    public Health hp;
+
     public float walkSpeed = 10f;
     public float sprintModifier = 1.30f;
     public float gravity = -9.81f;
@@ -20,9 +22,9 @@ public class Character : MonoBehaviour
     public float turnSpeed = 500f;
     
     public GameObject player;
-    //public string[] enemyIDs;
     public Transform headPosition;
     public Vector3 velocity;
+    //public string[] enemyIDs;
    
     public void Update()
     {
@@ -36,8 +38,7 @@ public class Character : MonoBehaviour
          */
 
     }
-    public void Move2(float speed)
-    {}
+    
 
     public void Move(float speed)
     {
