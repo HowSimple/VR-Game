@@ -26,12 +26,15 @@ public class Character : MonoBehaviour
    
     public void Update()
     {
-        transform.LookAt(player.transform);
-        MoveTowards(player.transform.position);
-        //transform.position += transform.forward * walkSpeed * Time.deltaTime;
-        if (Vector3.Distance(transform.position, player.transform.position) <= viewDistance)
-            gunController.ShootGun();
-            
+        /*
+         transform.LookAt(player.transform);
+         MoveTowards(player.transform.position);
+         //transform.position += transform.forward * walkSpeed * Time.deltaTime;
+         if (Vector3.Distance(transform.position, player.transform.position) <= viewDistance)
+             gunController.ShootGun();
+        
+         */
+
     }
     public void Move2(float speed)
     {}
