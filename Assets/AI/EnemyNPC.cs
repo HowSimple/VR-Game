@@ -43,7 +43,8 @@ public class EnemyNPC : MonoBehaviour
     // determine the view of the enemy NPC based on 
     // its head (where eyes are located)
     public Transform mEyeLookAt;
-
+    Character controller;
+    //GunController gunController;
     // The distance to the nearest enemy of the NPC.
     // In this demo we only have our player. So
     // this is the distance from the enemy NPC to the
@@ -56,6 +57,7 @@ public class EnemyNPC : MonoBehaviour
     // one player in the scene. It could also 
     // mean other NPCs that are enemy to
     // this NPC.
+
     [HideInInspector]
     public GameObject mNearestEnemy;
 
@@ -63,8 +65,7 @@ public class EnemyNPC : MonoBehaviour
     Animator mAnimator;
 
     // The reference to the character controller.
-    CharacterController controller;
-    GunController gunController;
+  
 
     // The total damage count.
     int mDamageCount = 0;
@@ -127,7 +128,7 @@ public class EnemyNPC : MonoBehaviour
     void Start()
     {
         //mAnimator = transform.GetChild(0).GetComponent<Animator>();
-        controller = npc.GetComponent<CharacterController>();
+        controller = npc.GetComponent<Character>();
 
         if (!mEyeLookAt)
         {
@@ -169,6 +170,7 @@ public class EnemyNPC : MonoBehaviour
 
     public GameObject GetNearestEnemyInSight(out float distance, float viewableDistance, bool useVieweingAngle = false)
     {
+        Debug.Log("looking for enemy"); 
         distance = viewableDistance;
         GameObject nearest = null;
         for (int t = 0; t < mEnemyTags.Length; ++t)
@@ -354,8 +356,10 @@ public class EnemyNPC : MonoBehaviour
                     if (mDistanceToNearestEnemy < mAttackDistance)
                     {
                         //turn towards target
-                        gunController.ShootGun();
-                        //PlayAnimation(StateTypes.ATTACK);
+                        controller.gunController.ShootGun();
+                        Debug.Log("SHOOTING ENEMY");
+                        // StartCoroutine(gunController.activeWeapon.Shoot()); 
+                        PlayAnimation(StateTypes.ATTACK);
                     }
                     else if (mDistanceToNearestEnemy > mAttackDistance && mDistanceToNearestEnemy < mViewingDistance)
                     {
@@ -481,6 +485,9 @@ public class EnemyNPC : MonoBehaviour
             }
             //ApplyChase
             //mCurrentAnimationIndex
+            transform.LookAt(mNearestEnemy.transform);
+            //MoveTowards(player.transform.position);
+
             npc.MoveTowards(mNearestEnemy.transform.position);
             PlayAnimation(StateTypes.CHASE);
         };

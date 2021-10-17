@@ -13,7 +13,7 @@ public class GunController : MonoBehaviour
     void Start() {
 
 
-        activeWeapon = weaponObject.GetComponent<Gun>();
+        //activeWeapon = weaponObject.GetComponent<Gun>();
 
        
 
