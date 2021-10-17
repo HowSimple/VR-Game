@@ -19,7 +19,10 @@ public class GunController : MonoBehaviour
 
 
     }
-
+    public void ReloadWeapon()
+    {
+        activeWeapon.Reload();
+    }
     public void SwitchWeapon()
     {
         //https://www.youtube.com/watch?v=Dn_BUIVdAPg
