@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     public float damage = 10f;
     public float maxSpread = 0;
     public float projectilesPerShot = 1;
+    public float blastRadius;
     public Rigidbody body;
 
 
@@ -17,7 +18,10 @@ public class Projectile : MonoBehaviour
     {
         
     }
-
+    void Impact(){
+        //check blast radius
+        //deal damage
+    }
     // Update is called once per frame
     void FixedUpdate()
     {

@@ -8,6 +8,7 @@ public class Launcher : Gun
     public GameObject projectile;
    // public GameObject muzzle;
     public float initialSpeed;
+    public GameObject explosionEffect;
     private void ShootProjectile()
     {
         GameObject p = Instantiate(projectile, muzzle.transform.position, muzzle.transform.rotation) ;
@@ -24,6 +25,14 @@ public class Launcher : Gun
             ShootProjectile();
             Debug.Log("Fire projectile!");
         }
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        
+        GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity) as GameObject;
+        Destroy(gameObject);
+        Destroy(explosion, 3);
     }
     /* override public IEnumerator Shoot()
      {
