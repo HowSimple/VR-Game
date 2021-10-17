@@ -8,8 +8,8 @@ public class PlayerMovement : MonoBehaviour
 {
  
     public CharacterController player;
-    
-   // private InputAction movement;
+    public GunController gunController;
+
     private Vector2 currentMove;
 
     public float walkSpeed = 10f;
@@ -23,7 +23,27 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 velocity;
    
+        
+    public void Fire(InputAction.CallbackContext context)
+    {
+        
+        gunController.ShootGun();
+            
+        Debug.Log("Fire!");
+    }
+    public void SwitchWeapon (InputAction.CallbackContext context)
+    {
+        gunController.SwitchWeapon();
 
+        Debug.Log("Switched weapon");
+    }
+     public void Reload(InputAction.CallbackContext context)
+    {
+        
+        gunController.ReloadWeapon();
+        
+        Debug.Log("Reloaded weapon");
+    }
     public void OnMove(InputAction.CallbackContext context)
     {
         currentMove = context.ReadValue<Vector2>();
