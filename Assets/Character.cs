@@ -8,6 +8,7 @@ public class Character : MonoBehaviour
     public CharacterController characterController;
     public Health hp;
 
+
     public float walkSpeed = 10f;
     public float sprintModifier = 1.30f;
     public float gravity = -9.81f;
@@ -64,7 +65,6 @@ public class Character : MonoBehaviour
         }
         return true;
     }
-
-
+  
 
 }
