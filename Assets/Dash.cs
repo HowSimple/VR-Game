@@ -10,7 +10,8 @@ public class Dash : MonoBehaviour
     public float dashDuration = 2.50f;
 
 
-    public Camera playerCam;
+    //public Camera playerCam;
+    public Transform origin;
     public GameObject player;
 
 
@@ -20,8 +21,8 @@ public class Dash : MonoBehaviour
         Debug.Log("Dash");
         
         
-           Vector3 destination = player.transform.forward * dashDistance;
-        
+           //Vector3 destination = player.transform.forward * dashDistance;
+            Vector3 destination = origin.transform.forward * dashDistance;
            StartCoroutine(DashOverTime(player, destination, dashDuration));
 
 
