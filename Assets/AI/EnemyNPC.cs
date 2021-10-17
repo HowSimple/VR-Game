@@ -353,7 +353,8 @@ public class EnemyNPC : MonoBehaviour
                 {
                     if (mDistanceToNearestEnemy < mAttackDistance)
                     {
-                        //ApplyAttack();
+                        //turn towards target
+                        gunController.ShootGun();
                         //PlayAnimation(StateTypes.ATTACK);
                     }
                     else if (mDistanceToNearestEnemy > mAttackDistance && mDistanceToNearestEnemy < mViewingDistance)
