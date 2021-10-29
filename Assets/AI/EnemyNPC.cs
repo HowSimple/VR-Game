@@ -43,7 +43,7 @@ public class EnemyNPC : MonoBehaviour
     // determine the view of the enemy NPC based on 
     // its head (where eyes are located)
     public Transform mEyeLookAt;
-    Character controller;
+    //Character controller;
     //GunController gunController;
     // The distance to the nearest enemy of the NPC.
     // In this demo we only have our player. So
@@ -62,7 +62,7 @@ public class EnemyNPC : MonoBehaviour
     public GameObject mNearestEnemy;
 
     // The reference to the animator.
-    Animator mAnimator;
+    public Animator mAnimator;
 
     // The reference to the character controller.
   
@@ -128,7 +128,9 @@ public class EnemyNPC : MonoBehaviour
     void Start()
     {
         //mAnimator = transform.GetChild(0).GetComponent<Animator>();
-        controller = npc.GetComponent<Character>();
+        mAnimator = npc.GetComponent<Animator>();
+        //mAnimator = controller.GetComponent<Animator>();
+        //controller = npc.GetComponent<Character>();
 
         if (!mEyeLookAt)
         {
@@ -227,17 +229,17 @@ public class EnemyNPC : MonoBehaviour
         {
             case StateTypes.ATTACK:
                 {
-                    //mAnimator.SetBool("Attack", true);
+                    mAnimator.SetBool("Attack", true);
                     break;
                 }
             case StateTypes.DIE:
                 {
-                    //mAnimator.SetTrigger("Die");
+                    mAnimator.SetTrigger("Die");
                     break;
                 }
             case StateTypes.DAMAGE:
                 {
-                    //mAnimator.SetTrigger("Damage");
+                    mAnimator.SetTrigger("Damage");
                     break;
                 }
         }
@@ -248,7 +250,7 @@ public class EnemyNPC : MonoBehaviour
         {
             case StateTypes.ATTACK:
                 {
-                    //mAnimator.SetBool("Attack", false);
+                    mAnimator.SetBool("Attack", false);
                     break;
                 }
             case StateTypes.DIE:
@@ -267,8 +269,8 @@ public class EnemyNPC : MonoBehaviour
                 }
             case StateTypes.CHASE:
                 {
-                    //mAnimator.SetFloat("PosZ", 0.0f);
-                    //mAnimator.SetFloat("PosX", 0.0f);
+                    mAnimator.SetFloat("PosZ", 0.0f);
+                    mAnimator.SetFloat("PosX", 0.0f);
                     break;
                 }
         }
@@ -356,7 +358,7 @@ public class EnemyNPC : MonoBehaviour
                     if (mDistanceToNearestEnemy < mAttackDistance)
                     {
                         //turn towards target
-                        controller.gunController.ShootGun();
+                        npc.gunController.ShootGun();
                         Debug.Log("SHOOTING ENEMY");
                         // StartCoroutine(gunController.activeWeapon.Shoot()); 
                         PlayAnimation(StateTypes.ATTACK);
