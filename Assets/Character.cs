@@ -8,7 +8,7 @@ public class Character : MonoBehaviour
     public CharacterController characterController;
     public Health hp;
 
-
+    public Animator mAnimator ;
     public float walkSpeed = 10f;
     public float sprintModifier = 1.30f;
     public float gravity = -9.81f;
@@ -22,7 +22,7 @@ public class Character : MonoBehaviour
 
     public float turnSpeed = 500f;
     
-    public GameObject player;
+   
     public Transform headPosition;
     public Vector3 velocity;
     //public string[] enemyIDs;
@@ -30,10 +30,13 @@ public class Character : MonoBehaviour
 
     public void Move(float speed)
     {
+        mAnimator.SetFloat("PosZ", walkSpeed);
         Vector3 forward = transform.TransformDirection(Vector3.forward).normalized;
         velocity = forward * speed;
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
+        mAnimator.SetFloat("PosX", velocity.x);
+        mAnimator.SetFloat("PosZ", velocity.z);
 
     }
 
