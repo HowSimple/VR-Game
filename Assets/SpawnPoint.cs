@@ -17,16 +17,17 @@ public class SpawnPoint : MonoBehaviour
         // yield return new WaitForSeconds(cooldownDuration);
         return entity;
     }
-    public GameObject SpawnEntityRandomly()
+    public GameObject SpawnEntityRandomly(Transform direction)
     { 
        
-        return SpawnEntity(Random.Range(0, entities.Count));
+        return SpawnEntityFacingDirection(Random.Range(0, entities.Count), direction);
     }
 
-    public void SpawnEntityFacingDirection(int index, Transform target)
+    public GameObject SpawnEntityFacingDirection(int index, Transform target)
     {
         GameObject entity = entities[index];
         GameObject spawnedEntity =  Instantiate(entity, spawnPoint.transform.position, spawnPoint.transform.rotation);
         spawnedEntity.transform.LookAt(target);
+        return spawnedEntity;
     }
 }
