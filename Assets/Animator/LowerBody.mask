@@ -12,7 +12,7 @@ AvatarMask:
   - m_Path: 
     m_Weight: 1
   - m_Path: root
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: root/Humanoid_
     m_Weight: 1
   - m_Path: root/Humanoid_/Humanoid_ Pelvis
@@ -40,7 +40,7 @@ AvatarMask:
   - m_Path: root/Humanoid_/Humanoid_ Pelvis/Humanoid_ R Thigh/RefPos2HandedGun_Idle
     m_Weight: 1
   - m_Path: root/Humanoid_/Humanoid_ Pelvis/Humanoid_ Spine
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: root/Humanoid_/Humanoid_ Pelvis/Humanoid_ Spine/Humanoid_ Spine1
     m_Weight: 1
   - m_Path: root/Humanoid_/Humanoid_ Pelvis/Humanoid_ Spine/Humanoid_ Spine1/Humanoid_
