@@ -3,27 +3,56 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
-
+using TMPro;
 public class PlayerMovement : MonoBehaviour
 {
  
     public CharacterController player;
     public GunController gunController;
-
+    public Health hp;
     private Vector2 currentMove;
 
     public float walkSpeed = 10f;
     public float sprintModifier = 1.30f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
-
+   //public TextMeshProUGUI healthUI;
+   // public TextMeshPro healthUI;
     //public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
-
+    public TMP_Text healthUI;
     Vector3 velocity;
-   
-        
+    private void Update()
+    {
+        /* if (  isGrounded() && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+        */
+          healthUI.text = "Health: "  +hp.healthPoints.ToString();
+
+        Vector3 moveDirection = transform.right * currentMove.x + transform.forward * currentMove.y;
+        player.Move( moveDirection * walkSpeed * Time.deltaTime);
+
+
+         Vector3 moveVelocity = walkSpeed * (
+          currentMove.x * Vector3.right +
+          currentMove.y * Vector3.forward
+        );
+       // Vector3 moveThisFrame = Time.deltaTime * moveVelocity;
+
+
+        velocity.y += gravity * Time.deltaTime;
+       //  transform.position += moveThisFrame;
+       // player.Move(moveThisFrame* walkSpeed *Time.deltaTime);
+
+        player.Move(velocity * Time.deltaTime);
+
+
+    }
+
+
     public void Fire(InputAction.CallbackContext context)
     {
         
@@ -71,35 +100,7 @@ public class PlayerMovement : MonoBehaviour
        
         return true;
     }
-    private void Update()
-    {
-        /* if (  isGrounded() && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
-        */
-
-
-        Vector3 moveDirection = transform.right * currentMove.x + transform.forward * currentMove.y;
-        player.Move( moveDirection * walkSpeed * Time.deltaTime);
-
-
-         Vector3 moveVelocity = walkSpeed * (
-          currentMove.x * Vector3.right +
-          currentMove.y * Vector3.forward
-        );
-       // Vector3 moveThisFrame = Time.deltaTime * moveVelocity;
-
-
-        velocity.y += gravity * Time.deltaTime;
-       //  transform.position += moveThisFrame;
-       // player.Move(moveThisFrame* walkSpeed *Time.deltaTime);
-
-        player.Move(velocity * Time.deltaTime);
-
-
-    }
-
+   
  
 
 }
