@@ -54,10 +54,7 @@ public class Gun : MonoBehaviour
         spreadDirection.z += UnityEngine.Random.Range(-maxSpread, maxSpread);
         return spreadDirection;
     }
-    private void ShootRay()
-    { 
-        
-    }
+    
     public virtual IEnumerator Shoot()
     {
         
