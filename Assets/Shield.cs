@@ -19,6 +19,6 @@ public class Shield : MonoBehaviour
     void activateShield(int duration)
     {
         GameObject shield = Instantiate(shieldPrefab, transform.position, transform.rotation);
-
+        //Destroy(shield, )
     }
 }
