@@ -59,6 +59,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""Jetpack"",
+                    ""type"": ""Button"",
+                    ""id"": ""95d61110-9a9c-4f18-9a98-212dacd67fc3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold""
+                },
+                {
                     ""name"": ""Exit"",
                     ""type"": ""Button"",
                     ""id"": ""032acfe2-676a-46ec-a027-aa86e618cdd7"",
@@ -78,14 +86,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""SecondaryFire"",
                     ""type"": ""Button"",
                     ""id"": ""3671ad20-4a7a-44ec-a6c3-92f14273b158"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""New action1"",
-                    ""type"": ""Button"",
-                    ""id"": ""03f23e9c-76e5-4632-900d-5dd78eaf5266"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -347,17 +347,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b986b2ba-3326-4f94-8d4b-6ec0d6758a6d"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""51d33f41-6258-45f6-ae5a-d68dac27bfd7"",
                     ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
@@ -452,6 +441,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SecondaryFire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""57c8b25f-1f76-43cc-aae3-105a05a680dd"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Jetpack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e3c9af0f-a411-4b0e-8e16-b2b2624d58c0"",
+                    ""path"": ""<XRController>{LeftHand}/gripPressed"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jetpack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1034,10 +1045,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Jetpack = m_Player.FindAction("Jetpack", throwIfNotFound: true);
         m_Player_Exit = m_Player.FindAction("Exit", throwIfNotFound: true);
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
         m_Player_SecondaryFire = m_Player.FindAction("SecondaryFire", throwIfNotFound: true);
-        m_Player_Newaction1 = m_Player.FindAction("New action1", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1104,10 +1115,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Jetpack;
     private readonly InputAction m_Player_Exit;
     private readonly InputAction m_Player_Menu;
     private readonly InputAction m_Player_SecondaryFire;
-    private readonly InputAction m_Player_Newaction1;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1117,10 +1128,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Jetpack => m_Wrapper.m_Player_Jetpack;
         public InputAction @Exit => m_Wrapper.m_Player_Exit;
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
         public InputAction @SecondaryFire => m_Wrapper.m_Player_SecondaryFire;
-        public InputAction @Newaction1 => m_Wrapper.m_Player_Newaction1;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1145,6 +1156,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jetpack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJetpack;
+                @Jetpack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJetpack;
+                @Jetpack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJetpack;
                 @Exit.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExit;
                 @Exit.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExit;
                 @Exit.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExit;
@@ -1154,9 +1168,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @SecondaryFire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryFire;
                 @SecondaryFire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryFire;
                 @SecondaryFire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryFire;
-                @Newaction1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNewaction1;
-                @Newaction1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNewaction1;
-                @Newaction1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNewaction1;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1176,6 +1187,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Jetpack.started += instance.OnJetpack;
+                @Jetpack.performed += instance.OnJetpack;
+                @Jetpack.canceled += instance.OnJetpack;
                 @Exit.started += instance.OnExit;
                 @Exit.performed += instance.OnExit;
                 @Exit.canceled += instance.OnExit;
@@ -1185,9 +1199,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @SecondaryFire.started += instance.OnSecondaryFire;
                 @SecondaryFire.performed += instance.OnSecondaryFire;
                 @SecondaryFire.canceled += instance.OnSecondaryFire;
-                @Newaction1.started += instance.OnNewaction1;
-                @Newaction1.performed += instance.OnNewaction1;
-                @Newaction1.canceled += instance.OnNewaction1;
             }
         }
     }
@@ -1349,10 +1360,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnJetpack(InputAction.CallbackContext context);
         void OnExit(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
         void OnSecondaryFire(InputAction.CallbackContext context);
-        void OnNewaction1(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
