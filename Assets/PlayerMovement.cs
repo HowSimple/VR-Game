@@ -7,15 +7,12 @@ using TMPro;
 public class PlayerMovement : MonoBehaviour
 {
  
-<<<<<<< Updated upstream
-    public CharacterController player;
-    public GunController gunController;
-    public Health hp;
-=======
     //public CharacterController player;
+    //public GunController gunController;
+    public Health hp;
+
     private GunController gunController;
 
->>>>>>> Stashed changes
     private Vector2 currentMove;
 
     public float walkSpeed = 10f;
@@ -29,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
     public TMP_Text healthUI;
     Vector3 velocity;
-<<<<<<< Updated upstream
     private void Update()
     {
         /* if (  isGrounded() && velocity.y < 0)
@@ -60,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-=======
+
    
    
     private CharacterController player;
@@ -70,7 +66,6 @@ public class PlayerMovement : MonoBehaviour
         gunController = this.GetComponent<GunController>();
 
     }
->>>>>>> Stashed changes
     public void Fire(InputAction.CallbackContext context)
     {
         
@@ -102,19 +97,20 @@ public class PlayerMovement : MonoBehaviour
      public float jetpackMaxVelocity;
     public float jetpackDuration;
     //public ParticleSystem jetpackExhaustEffect;
-
+     
      public void OnJetpackStart(InputAction.CallbackContext context)
     {
         //currentMove = context.ReadValue<Vector2>();
-          if (context.started)
+        Debug.Log("Jetpack start");
+        if (context.performed)
         {
            
             velocity.y += jetpackAcceleration * Time.deltaTime;    
-            Debug.Log("Jetpack start");
+           
         }
         
     
-          if (context.performed)
+          if (context.canceled)
         {
            
             //velocity.y += jetpackAcceleration * Time.deltaTime;    
