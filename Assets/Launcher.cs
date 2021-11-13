@@ -34,12 +34,5 @@ public class Launcher : Gun
         Destroy(gameObject);
         Destroy(explosion, 3);
     }
-    /* override public IEnumerator Shoot()
-     {
-         if (allowFire)
-         {
-
-
-         }
-     }*/
+   
 }
