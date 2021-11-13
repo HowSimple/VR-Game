@@ -31,7 +31,7 @@
                 },
                 {
                     "name": "Fire",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "233ccee1-899b-4494-9c9d-583a174804bd",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -47,11 +47,11 @@
                 },
                 {
                     "name": "Jetpack",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "95d61110-9a9c-4f18-9a98-212dacd67fc3",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold"
+                    "interactions": ""
                 },
                 {
                     "name": "Exit",
@@ -73,6 +73,14 @@
                     "name": "SecondaryFire",
                     "type": "Button",
                     "id": "3671ad20-4a7a-44ec-a6c3-92f14273b158",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Switch Weapon",
+                    "type": "Button",
+                    "id": "4aac7caf-7135-4c16-85ab-7b13ddb8ab2b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -433,6 +441,17 @@
                 },
                 {
                     "name": "",
+                    "id": "fc454064-605a-4be4-80f0-d3feb708e5e7",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondaryFire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "57c8b25f-1f76-43cc-aae3-105a05a680dd",
                     "path": "<Keyboard>/v",
                     "interactions": "",
@@ -450,6 +469,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jetpack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "21b126db-ee40-4d37-95f9-3af93b48078a",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Switch Weapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e02f187c-bb16-49c6-9057-70033464d9be",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Switch Weapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
