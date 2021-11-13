@@ -44,7 +44,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Fire"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""233ccee1-899b-4494-9c9d-583a174804bd"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -60,11 +60,11 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Jetpack"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""95d61110-9a9c-4f18-9a98-212dacd67fc3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold""
+                    ""interactions"": """"
                 },
                 {
                     ""name"": ""Exit"",
@@ -86,6 +86,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""SecondaryFire"",
                     ""type"": ""Button"",
                     ""id"": ""3671ad20-4a7a-44ec-a6c3-92f14273b158"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Switch Weapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""4aac7caf-7135-4c16-85ab-7b13ddb8ab2b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -446,6 +454,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""fc454064-605a-4be4-80f0-d3feb708e5e7"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SecondaryFire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""57c8b25f-1f76-43cc-aae3-105a05a680dd"",
                     ""path"": ""<Keyboard>/v"",
                     ""interactions"": """",
@@ -463,6 +482,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jetpack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""21b126db-ee40-4d37-95f9-3af93b48078a"",
+                    ""path"": ""<XRController>{RightHand}/primaryButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Switch Weapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e02f187c-bb16-49c6-9057-70033464d9be"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Switch Weapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1049,6 +1090,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Player_Exit = m_Player.FindAction("Exit", throwIfNotFound: true);
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
         m_Player_SecondaryFire = m_Player.FindAction("SecondaryFire", throwIfNotFound: true);
+        m_Player_SwitchWeapon = m_Player.FindAction("Switch Weapon", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1119,6 +1161,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Exit;
     private readonly InputAction m_Player_Menu;
     private readonly InputAction m_Player_SecondaryFire;
+    private readonly InputAction m_Player_SwitchWeapon;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1132,6 +1175,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Exit => m_Wrapper.m_Player_Exit;
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
         public InputAction @SecondaryFire => m_Wrapper.m_Player_SecondaryFire;
+        public InputAction @SwitchWeapon => m_Wrapper.m_Player_SwitchWeapon;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1168,6 +1212,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @SecondaryFire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryFire;
                 @SecondaryFire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryFire;
                 @SecondaryFire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryFire;
+                @SwitchWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeapon;
+                @SwitchWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeapon;
+                @SwitchWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeapon;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1199,6 +1246,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @SecondaryFire.started += instance.OnSecondaryFire;
                 @SecondaryFire.performed += instance.OnSecondaryFire;
                 @SecondaryFire.canceled += instance.OnSecondaryFire;
+                @SwitchWeapon.started += instance.OnSwitchWeapon;
+                @SwitchWeapon.performed += instance.OnSwitchWeapon;
+                @SwitchWeapon.canceled += instance.OnSwitchWeapon;
             }
         }
     }
@@ -1364,6 +1414,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnExit(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
         void OnSecondaryFire(InputAction.CallbackContext context);
+        void OnSwitchWeapon(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
