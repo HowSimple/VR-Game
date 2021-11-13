@@ -9,10 +9,10 @@ public class PlayerMovement : MonoBehaviour
  
     //public CharacterController player;
     //public GunController gunController;
-    public Health hp;
-
+    private Health hp;
+    private Dash dash;
     private GunController gunController;
-
+    private CharacterController player;
     private Vector2 currentMove;
 
     public float walkSpeed = 10f;
@@ -26,25 +26,41 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
     public TMP_Text healthUI;
     Vector3 velocity;
-    private void Update()
+    bool jetpackOn;
+    private void Awake()
+    {
+        player = this.GetComponent<CharacterController>();
+        gunController = this.GetComponent<GunController>();
+        dash = this.GetComponent<Dash>();
+        hp = this.GetComponent<Health>();
+        jetpackOn = false; 
+
+
+    }
+    private void FixedUpdate()
     {
         /* if (  isGrounded() && velocity.y < 0)
         {
             velocity.y = -2f;
         }
         */
+        
+        if (jetpackOn)
+        {
+            velocity.y += jetpackAcceleration * Time.deltaTime;    
+
+        }
+
           healthUI.text = "Health: "  +hp.healthPoints.ToString();
 
         Vector3 moveDirection = transform.right * currentMove.x + transform.forward * currentMove.y;
         player.Move( moveDirection * walkSpeed * Time.deltaTime);
 
 
-         Vector3 moveVelocity = walkSpeed * (
-          currentMove.x * Vector3.right +
-          currentMove.y * Vector3.forward
-        );
-       // Vector3 moveThisFrame = Time.deltaTime * moveVelocity;
-
+        Vector3 moveVelocity = walkSpeed * (
+         currentMove.x * Vector3.right +
+         currentMove.y * Vector3.forward
+       );
 
         velocity.y += gravity * Time.deltaTime;
        //  transform.position += moveThisFrame;
@@ -54,24 +70,13 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
-
-
-
-   
-   
-    private CharacterController player;
-    void Awake()
-    {
-        player = this.GetComponent<CharacterController>();
-        gunController = this.GetComponent<GunController>();
-
-    }
+    
     public void Fire(InputAction.CallbackContext context)
     {
         
         gunController.ShootGun();
             
-        Debug.Log("Fire!");
+        Debug.Log("Fire! --controller");
     }
     public void SwitchWeapon (InputAction.CallbackContext context)
     {
@@ -86,6 +91,23 @@ public class PlayerMovement : MonoBehaviour
         
         Debug.Log("Reloaded weapon");
     }
+
+    
+    public void DashForward(InputAction.CallbackContext context)
+    {
+        Debug.Log("Dash");
+        
+
+        //Vector3 destination = player.transform.forward * dashDistance;
+        Vector3 destination =   transform.forward * dash.dashDistance;
+        StartCoroutine(dash.DashOverTime(gameObject, destination, dash.dashDuration));
+
+
+
+
+
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         currentMove = context.ReadValue<Vector2>();
@@ -97,22 +119,23 @@ public class PlayerMovement : MonoBehaviour
      public float jetpackMaxVelocity;
     public float jetpackDuration;
     //public ParticleSystem jetpackExhaustEffect;
-     
-     public void OnJetpackStart(InputAction.CallbackContext context)
+    
+    public void OnJetpackStart(InputAction.CallbackContext context)
     {
         //currentMove = context.ReadValue<Vector2>();
-        Debug.Log("Jetpack start");
-        if (context.performed)
+       
+        if (context.started)
         {
-           
-            velocity.y += jetpackAcceleration * Time.deltaTime;    
+             Debug.Log("Jetpack start");
+            jetpackOn = true;
+           // velocity.y += jetpackAcceleration * Time.deltaTime;    
            
         }
         
     
           if (context.canceled)
         {
-           
+            jetpackOn = false;
             //velocity.y += jetpackAcceleration * Time.deltaTime;    
             Debug.Log("Jetpack stop");
         }
