@@ -8,13 +8,15 @@ public class GunController : MonoBehaviour
     public Gun secondWeapon;
     public Gun[] weapons;
     public int activeWeaponIndex;
-    public GameObject weaponObject;
+    //public GameObject weaponObject;
 
     void Start() {
 
 
-        //activeWeapon = weaponObject.GetComponent<Gun>();
-
+        //activeWeapon = GetComponent<Gun>();
+       if (weapons.Length == 0 && activeWeapon != null)
+        weapons[0] = activeWeapon;
+        activeWeapon = weapons[0];
        
 
 
