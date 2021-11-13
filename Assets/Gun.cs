@@ -18,7 +18,7 @@ public class Gun : MonoBehaviour
     public GameObject impactEffect;
 
     public AudioClip gunshotAudio;
-    public AudioSource gunAudioSource;
+    private AudioSource gunAudioSource;
 
     public int loadedAmmo;
     public int magazineSize;
@@ -29,7 +29,10 @@ public class Gun : MonoBehaviour
 
     public float rateOfFire;
     public bool allowFire = true;
-    public void Start() { allowFire = true; }
+    public void Start() { 
+        allowFire = true; 
+        gunAudioSource = GetComponent<AudioSource>();
+    }
     public void Fire(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -67,10 +70,6 @@ public class Gun : MonoBehaviour
             {
                 ///ShootRay(S)
                 Vector3 spreadDirection = Spread();
-                //spreadDirection.x += UnityEngine.Random.Range(-maxSpread, maxSpread);
-               // spreadDirection.y += UnityEngine.Random.Range(-maxSpread, maxSpread);
-               // spreadDirection.z += UnityEngine.Random.Range(-maxSpread, maxSpread);
-
                 RaycastHit hit;
                 muzzleFlash.Play();
                 gunAudioSource.volume = 0.2f;
