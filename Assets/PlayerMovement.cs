@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private GunController gunController;
     private CharacterController player;
     private Vector2 currentMove;
-
+    private AudioSource audio;
     public float walkSpeed = 10f;
     public float sprintModifier = 1.30f;
     public float gravity = -9.81f;
@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public TMP_Text healthUI;
     Vector3 velocity;
     bool jetpackOn;
+    public AudioClip switchSoundEffect;
     private void Awake()
     {
         player = this.GetComponent<CharacterController>();
@@ -80,8 +81,9 @@ public class PlayerMovement : MonoBehaviour
     }
     public void SwitchWeapon (InputAction.CallbackContext context)
     {
-        gunController.SwitchWeapon();
-
+       // gunController.SwitchWeapon2();
+        audio.volume = 0.2f;
+        audio.PlayOneShot(switchSoundEffect);
         Debug.Log("Switched weapon");
     }
      public void Reload(InputAction.CallbackContext context)
