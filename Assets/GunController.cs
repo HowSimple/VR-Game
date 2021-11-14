@@ -5,18 +5,22 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     public Gun activeWeapon;
+    
     public Gun secondWeapon;
     public Gun[] weapons;
     public int activeWeaponIndex;
     //public GameObject weaponObject;
+    
 
     void Start() {
-
+        if (secondWeapon != null)
+        secondWeapon.gameObject.SetActive(false);
+        activeWeaponIndex = 0;
 
         //activeWeapon = GetComponent<Gun>();
-       if (weapons.Length == 0 && activeWeapon != null)
-        weapons[0] = activeWeapon;
-        activeWeapon = weapons[0];
+    //if (weapons.Length == 0 && activeWeapon != null)
+        //[0] = activeWeapon;
+       // activeWeapon = weapons[0];
        
 
 
@@ -25,7 +29,7 @@ public class GunController : MonoBehaviour
     {
         activeWeapon.Reload();
     }
-    public void SwitchWeapon()
+    public void SwitchWeapon2()
     {
         //https://www.youtube.com/watch?v=Dn_BUIVdAPg
      
@@ -45,6 +49,14 @@ public class GunController : MonoBehaviour
             i++;
         }
 
+    }
+    public void SwitchWeapon()
+    {
+         
+           Gun temp = activeWeapon;
+        activeWeapon = secondWeapon;
+        secondWeapon = temp;
+      
     }
     public void ShootGun()
     {
