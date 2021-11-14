@@ -1025,7 +1025,6 @@ MonoBehaviour:
   secondWeapon: {fileID: 0}
   weapons: []
   activeWeaponIndex: 0
-  weaponObject: {fileID: 2515014292386522977}
 --- !u!114 &4532295644852787089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1039,6 +1038,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoints: 50
+  healthRegenEnabled: 0
+  regenRate: 0
+  regenDelay: 0
 --- !u!114 &4532295644852787092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1055,7 +1057,7 @@ MonoBehaviour:
   characterController: {fileID: 4532295644852787094}
   hp: {fileID: 4532295644852787089}
   mAnimator: {fileID: 2912297339522454693}
-  walkSpeed: 1
+  walkSpeed: 5
   sprintModifier: 1.3
   gravity: -9.81
   jumpHeight: 3
@@ -1083,7 +1085,7 @@ MonoBehaviour:
   npc: {fileID: 4532295644852787092}
   mViewingDistance: 100
   mViewingAngle: 60
-  mAttackDistance: 3
+  mAttackDistance: 5
   mTurnRate: 500
   mEnemyTags:
   - Player
@@ -3232,30 +3234,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce95070b46b99494bac28682f393155b, type: 3}
---- !u!1 &2515014292386522977 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2018407357219695086, guid: ce95070b46b99494bac28682f393155b,
-    type: 3}
-  m_PrefabInstance: {fileID: 4532295645476146831}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2516738519905902089 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2020060941087887494, guid: ce95070b46b99494bac28682f393155b,
-    type: 3}
-  m_PrefabInstance: {fileID: 4532295645476146831}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2513823001177471307 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2019607504589453252, guid: ce95070b46b99494bac28682f393155b,
     type: 3}
   m_PrefabInstance: {fileID: 4532295645476146831}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2515014292386522977}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b349329c9d2fb0e449dc62a275659ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &2516738519905902089 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2020060941087887494, guid: ce95070b46b99494bac28682f393155b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4532295645476146831}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5564163042301024325
 PrefabInstance:
   m_ObjectHideFlags: 0
