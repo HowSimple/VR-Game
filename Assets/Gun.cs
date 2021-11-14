@@ -31,7 +31,8 @@ public class Gun : MonoBehaviour
     public bool allowFire = true;
     public void Start() { 
         allowFire = true; 
-        gunAudioSource = GetComponent<AudioSource>();
+        //gunAudioSource = GetComponent<AudioSource>();
+        gunAudioSource = transform.Find("Audio Source").gameObject.GetComponent<AudioSource>();
     }
     public void Fire(InputAction.CallbackContext context)
     {
