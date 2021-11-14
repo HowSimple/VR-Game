@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class WaveSpawner : MonoBehaviour
 {
     public List<SpawnPoint> spawnPoints;
@@ -10,16 +10,21 @@ public class WaveSpawner : MonoBehaviour
     public float timeBetweenWaves;
     private int remainingEnemies;
     public int wavesRemaining;
-   
+    private int currentWave;
    
     public Transform player;
     public List<GameObject> aliveEnemies;
+    public TMP_Text waveUI;
     // Start is called before the first frame update
     void Start()
     {
-       
+       currentWave = 0;
         
         StartCoroutine(startWaves());
+    }
+    private void FixedUpdate()
+    {
+        waveUI.text = "Wave "  +currentWave.ToString()+" of "+wavesRemaining.ToString();
     }
     public IEnumerator startWaves()
     {
@@ -28,6 +33,7 @@ public class WaveSpawner : MonoBehaviour
         {
             NewWave();
             Debug.Log("Wave started");
+            currentWave++;
             yield return new WaitForSeconds(timeBetweenWaves);
         }
 
