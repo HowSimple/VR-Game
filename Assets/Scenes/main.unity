@@ -7361,7 +7361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoints: 50
-  healthRegenEnabled: 1
+  healthRegenEnabled: 0
   regenRate: 3
   regenDelay: 0
 --- !u!136 &973506807
