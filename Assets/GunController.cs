@@ -53,10 +53,16 @@ public class GunController : MonoBehaviour
     public void SwitchWeapon()
     {
          
-           Gun temp = activeWeapon;
-        activeWeapon = secondWeapon;
-        secondWeapon = temp;
-      
+        if(activeWeapon.gameObject.activeSelf)
+       {
+           activeWeapon.gameObject.SetActive(false);
+           secondWeapon.gameObject.SetActive(true);
+       }
+      else if (secondWeapon.gameObject.activeSelf)
+       {
+           activeWeapon.gameObject.SetActive(true);
+           secondWeapon.gameObject.SetActive(false);
+       }
     }
     public void ShootGun()
     {
