@@ -30,9 +30,7 @@ public class Health : MonoBehaviour
         healthPoints -= amount;
         if (healthPoints <= 0f)
         {
-           if(gameObject.name == "Player")
-                PlayerDeath();
-           else Die();
+           Die();
 
         }
 
@@ -56,7 +54,7 @@ public class Health : MonoBehaviour
     {
        if (gameObject.name == "Player")
         {
-            PlayerDeath();
+             StartCoroutine(PlayerDeath());
         }
        else 
          Destroy(gameObject);
