@@ -60,11 +60,11 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Jetpack"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""95d61110-9a9c-4f18-9a98-212dacd67fc3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=2)""
                 },
                 {
                     ""name"": ""Exit"",
@@ -477,7 +477,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e3c9af0f-a411-4b0e-8e16-b2b2624d58c0"",
-                    ""path"": ""<XRController>{LeftHand}/gripPressed"",
+                    ""path"": ""<XRController>{LeftHand}/triggerPressed"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -488,7 +488,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""21b126db-ee40-4d37-95f9-3af93b48078a"",
-                    ""path"": ""<XRController>{RightHand}/primaryButton"",
+                    ""path"": ""<XRController>{LeftHand}/gripPressed"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
