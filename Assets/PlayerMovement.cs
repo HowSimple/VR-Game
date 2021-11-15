@@ -81,9 +81,9 @@ public class PlayerMovement : MonoBehaviour
     }
     public void SwitchWeapon (InputAction.CallbackContext context)
     {
-       // gunController.SwitchWeapon2();
+        gunController.SwitchWeapon();
         audio.volume = 0.2f;
-        audio.PlayOneShot(switchSoundEffect);
+        //audio.PlayOneShot(switchSoundEffect);
         Debug.Log("Switched weapon");
     }
      public void Reload(InputAction.CallbackContext context)
