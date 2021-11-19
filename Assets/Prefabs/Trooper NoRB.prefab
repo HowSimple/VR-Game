@@ -1038,9 +1038,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoints: 50
+  maxHP: 0
   healthRegenEnabled: 0
   regenRate: 0
   regenDelay: 0
+  healingItemDrop: {fileID: 4808326129321567587, guid: ff13481ae31ce3046b00bd8eca8a1a9c,
+    type: 3}
 --- !u!114 &4532295644852787092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1070,6 +1073,9 @@ MonoBehaviour:
   turnSpeed: 500
   headPosition: {fileID: 2912297339515042631}
   velocity: {x: 0, y: 0, z: 0}
+  damageModifier: 0
+  defenseModifier: 0
+  speedModifier: 0
 --- !u!114 &4532295644852787093
 MonoBehaviour:
   m_ObjectHideFlags: 0
