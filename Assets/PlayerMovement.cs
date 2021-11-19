@@ -6,10 +6,8 @@ using UnityEngine.InputSystem;
 using TMPro;
 public class PlayerMovement : MonoBehaviour
 {
- 
-    //public CharacterController player;
-    //public GunController gunController;
     private Health hp;
+
     private Dash dash;
     private GunController gunController;
     private CharacterController player;
@@ -19,25 +17,29 @@ public class PlayerMovement : MonoBehaviour
     public float sprintModifier = 1.30f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
-   //public TextMeshProUGUI healthUI;
-   // public TextMeshPro healthUI;
-    //public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
-    public TMP_Text healthUI;
+    public float jetCharge;
+    public bool jetpackOn;
+
+    
     Vector3 velocity;
-    bool jetpackOn;
-    public AudioClip switchSoundEffect;
+    
+    
+
+   
+    
     private void Awake()
     {
         player = this.GetComponent<CharacterController>();
+        jetCharge = 1.00f;
         gunController = this.GetComponent<GunController>();
         dash = this.GetComponent<Dash>();
         hp = this.GetComponent<Health>();
-        jetpackOn = false; 
-
-
+        jetpackOn = false;
+        //jetRechargeBar.fillAmount(100);
     }
+
     private void FixedUpdate()
     {
         /* if (  isGrounded() && velocity.y < 0)
@@ -46,13 +48,19 @@ public class PlayerMovement : MonoBehaviour
         }
         */
         
-        if (jetpackOn)
+        if (jetpackOn && jetCharge >.20f)
         {
-            velocity.y += jetpackAcceleration * Time.deltaTime;    
+            velocity.y += jetpackAcceleration * Time.deltaTime; 
+            jetCharge-=0.01f;
+                                                                                                                                                                                                                    
 
         }
-
-          healthUI.text = "Health: "  +hp.healthPoints.ToString();
+        else
+        {
+            jetCharge+=0.01f;
+        }
+        //jetRechargeBar.fillAmount(jetCharge);     
+          //healthUI.text = "Health: "  +hp.healthPoints.ToString();
 
         Vector3 moveDirection = transform.right * currentMove.x + transform.forward * currentMove.y;
         player.Move( moveDirection * walkSpeed * Time.deltaTime);
