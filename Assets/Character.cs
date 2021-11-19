@@ -13,7 +13,7 @@ public class Character : MonoBehaviour
     public float sprintModifier = 1.30f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
-    //public Transform groundCheck;
+
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
@@ -25,9 +25,20 @@ public class Character : MonoBehaviour
    
     public Transform headPosition;
     public Vector3 velocity;
-    //public string[] enemyIDs;
 
-
+    public float damageModifier, defenseModifier, speedModifier;
+    public void Start()
+    {
+        damageModifier = 0;
+        defenseModifier = 0;
+        speedModifier = 0;
+    }
+    public void addUpgrade(float damage, float defense, float speed)
+    {
+        damageModifier+= damage;
+        defenseModifier+= defense;
+        speedModifier+= speed;
+    }
     public void Move(float speed)
     {
         mAnimator.SetFloat("PosZ", walkSpeed);
