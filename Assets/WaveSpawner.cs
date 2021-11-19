@@ -5,7 +5,7 @@ using TMPro;
 public class WaveSpawner : MonoBehaviour
 {
     public List<SpawnPoint> spawnPoints;
-
+    public int wavesCompleted;
 
     public float timeBetweenWaves;
     private int remainingEnemies;
@@ -19,7 +19,7 @@ public class WaveSpawner : MonoBehaviour
     void Start()
     {
        currentWave = 0;
-        
+        wavesCompleted = 0;
         StartCoroutine(startWaves());
     }
     private void FixedUpdate()
@@ -45,10 +45,16 @@ public class WaveSpawner : MonoBehaviour
     {
         foreach (SpawnPoint point in spawnPoints)
         {
-           aliveEnemies.Add(point.SpawnEntityFacingDirection(0, player));
+           GameObject enemy = point.SpawnEntityFacingDirection(0, player);
+           aliveEnemies.Add(enemy);
+           float enemyLevel = (wavesCompleted % 3f) / 0.10f;
+           Debug.Log("Enemy Lvl"+enemyLevel);
+           enemy.GetComponent<Character>().addUpgrade(enemyLevel,enemyLevel,enemyLevel);
+           
 
         }
-
+        //enemyLevel = (wavesCompleted % 3f) / 0.10f;
+        //   Debug.Log("Enemy Lvl"+enemyLevel);
 
     }
 
