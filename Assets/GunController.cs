@@ -9,7 +9,6 @@ public class GunController : MonoBehaviour
     public Gun secondWeapon;
     public Gun[] weapons;
     public int activeWeaponIndex;
-    //public GameObject weaponObject;
     
 
     void Start() {
@@ -68,10 +67,7 @@ public class GunController : MonoBehaviour
     {
         StartCoroutine(activeWeapon.Shoot());
     }
-    public void ShootTarget(Vector3 direction)
-    {
 
-    }
 
   
 }
