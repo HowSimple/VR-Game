@@ -25,8 +25,19 @@ public class PlayerMovement : MonoBehaviour
     
     Vector3 velocity;
     
-    
-
+    public AudioClip heal;
+    void OnTriggerEnter(Collider col)
+    {
+        //&& hp.healthPoints< hp.maxHP
+        if (col.gameObject.tag == "Health" )
+            {
+                    hp.heal(10);
+                    Destroy(col.gameObject);
+                    audio.volume = 0.6f;
+                    audio.PlayOneShot(heal);
+                    Debug.Log("HEAL");
+            }
+    }
    
     
     private void Awake()
@@ -34,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         player = this.GetComponent<CharacterController>();
         jetCharge = 1.00f;
         gunController = this.GetComponent<GunController>();
+        audio = this.GetComponent<AudioSource>();
         dash = this.GetComponent<Dash>();
         hp = this.GetComponent<Health>();
         jetpackOn = false;
