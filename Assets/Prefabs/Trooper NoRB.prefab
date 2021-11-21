@@ -1042,7 +1042,7 @@ MonoBehaviour:
   healthRegenEnabled: 0
   regenRate: 0
   regenDelay: 0
-  healingItemDrop: {fileID: 4808326129321567587, guid: ff13481ae31ce3046b00bd8eca8a1a9c,
+  healingItemDrop: {fileID: 1000010714891294, guid: 5a0537415d4017c4fad7a4986f502dc1,
     type: 3}
 --- !u!114 &4532295644852787092
 MonoBehaviour:
