@@ -60,7 +60,8 @@ public class Health : MonoBehaviour
        else 
        {
             // add wait to delete
-            Instantiate(healingItemDrop, gameObject.transform);
+            Instantiate(healingItemDrop, gameObject.transform.position, healingItemDrop.transform.rotation);
+            Debug.Log("Killed enemy");
             Destroy(gameObject);
 
        }
