@@ -443,17 +443,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7668feea-aa2c-478b-ab9d-d98171aab5f9"",
-                    ""path"": ""<OculusTouchController>{LeftHand}/triggerPressed"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SecondaryFire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""fc454064-605a-4be4-80f0-d3feb708e5e7"",
                     ""path"": ""<Keyboard>/b"",
                     ""interactions"": """",
@@ -477,7 +466,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e3c9af0f-a411-4b0e-8e16-b2b2624d58c0"",
-                    ""path"": ""<XRController>{LeftHand}/triggerPressed"",
+                    ""path"": ""<XRInputV1::Oculus::OculusTouchControllerLeft>{LeftHand}/triggerpressed"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

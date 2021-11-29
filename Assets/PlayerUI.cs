@@ -21,7 +21,7 @@ public class PlayerUI : MonoBehaviour
         //dash = this.GetComponent<Dash>();
         hp = this.GetComponent<Health>();
       
-        //jetRechargeBar.fillAmount= (100);
+        jetRechargeBar.fillAmount= (100);
     }
     private void FixedUpdate()
     {
