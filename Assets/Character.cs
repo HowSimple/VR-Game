@@ -25,13 +25,13 @@ public class Character : MonoBehaviour
    
     public Transform headPosition;
     public Vector3 velocity;
-
-    public float damageModifier, defenseModifier, speedModifier;
+    //[HideInInspector]
+    public float damageModifier = 1, defenseModifier = 1, speedModifier = 1;
     public void Start()
     {
-        damageModifier = 0;
-        defenseModifier = 0;
-        speedModifier = 0;
+        //damageModifier = 1;
+        //defenseModifier = 1;
+        //speedModifier = 1;
     }
     public void addUpgrade(float damage, float defense, float speed)
     {
