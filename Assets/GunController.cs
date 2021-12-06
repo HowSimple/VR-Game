@@ -65,7 +65,7 @@ public class GunController : MonoBehaviour
     {
         
         
-        StartCoroutine(activeWeapon.Shoot(charController.damageModifier));
+        StartCoroutine(activeWeapon.Shoot());
     }
         public void ShootGun(float damageModifier)
     {
