@@ -9,18 +9,16 @@ public class GunController : MonoBehaviour
     public Gun secondWeapon;
     public Gun[] weapons;
     public int activeWeaponIndex;
-    
+    private Character charController;
 
     void Start() {
+        charController = this.GetComponent<Character>();
+
         if (secondWeapon != null)
         secondWeapon.gameObject.SetActive(false);
         activeWeaponIndex = 0;
 
-        //activeWeapon = GetComponent<Gun>();
-    //if (weapons.Length == 0 && activeWeapon != null)
-        //[0] = activeWeapon;
-       // activeWeapon = weapons[0];
-       
+   
 
 
     }
@@ -65,8 +63,18 @@ public class GunController : MonoBehaviour
     }
     public void ShootGun()
     {
-        StartCoroutine(activeWeapon.Shoot());
+        
+        
+        StartCoroutine(activeWeapon.Shoot(charController.damageModifier));
     }
+        public void ShootGun(float damageModifier)
+    {
+        
+        
+        StartCoroutine(activeWeapon.Shoot(charController.damageModifier));
+    }
+
+
 
 
   
