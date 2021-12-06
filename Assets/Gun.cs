@@ -50,7 +50,11 @@ public class Gun : MonoBehaviour
         spreadDirection.z += UnityEngine.Random.Range(-maxSpread, maxSpread);
         return spreadDirection;
     }
-  
+    public virtual IEnumerator Shoot()
+    {
+        yield return Shoot(1);
+    }
+    
     public virtual IEnumerator Shoot(float damageModifier)
     {
         float dmg = damage * damageModifier;
