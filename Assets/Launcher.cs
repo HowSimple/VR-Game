@@ -9,7 +9,7 @@ public class Launcher : Gun
    // public GameObject muzzle;
     public float initialSpeed;
     public GameObject explosionEffect;
-    private void Shoot()
+    private void ShootProjectile()
     {
         GameObject p = Instantiate(projectile, muzzle.transform.position, muzzle.transform.rotation) ;
         p.SetActive(true);
