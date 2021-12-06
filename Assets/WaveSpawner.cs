@@ -10,7 +10,7 @@ public class WaveSpawner : MonoBehaviour
     public float timeBetweenWaves;
     private int remainingEnemies;
     public int wavesRemaining;
-    private int currentWave;
+    public int currentWave;
    
     public Transform player;
     public List<GameObject> aliveEnemies;
@@ -47,7 +47,8 @@ public class WaveSpawner : MonoBehaviour
         {
            GameObject enemy = point.SpawnEntityFacingDirection(0, player);
            aliveEnemies.Add(enemy);
-           float enemyLevel = (wavesCompleted % 3f) / 0.10f;
+           //float enemyLevel = (wavesCompleted % 3f) / 0.10f;
+           float enemyLevel = (currentWave);
            Debug.Log("Enemy Lvl"+enemyLevel);
            enemy.GetComponent<Character>().addUpgrade(enemyLevel,enemyLevel,enemyLevel);
            
