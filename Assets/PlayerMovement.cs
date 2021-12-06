@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     private Dash dash;
     private GunController gunController;
     private CharacterController player;
-    private Character character;
     private Vector2 currentMove;
     private AudioSource audio;
     public float walkSpeed = 10f;
@@ -36,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
                     Destroy(col.gameObject);
                     audio.volume = 0.6f;
                     audio.PlayOneShot(heal);
+                    Debug.Log("HEAL");
             }
     }
    
@@ -43,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         player = this.GetComponent<CharacterController>();
-        character = this.GetComponent<Character>();
         jetCharge = 1.00f;
         gunController = this.GetComponent<GunController>();
         audio = this.GetComponent<AudioSource>();
@@ -96,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
     public void Fire(InputAction.CallbackContext context)
     {
         
-        gunController.ShootGun(character.damageModifier);
+        gunController.ShootGun();
             
         Debug.Log("Fire! --controller");
     }
