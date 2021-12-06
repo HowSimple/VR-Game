@@ -29,12 +29,20 @@ public class Gun : MonoBehaviour
 
     public float rateOfFire;
     public bool allowFire = true;
-    public bool isHitscan = true;
     public void Start() { 
         allowFire = true; 
+        //gunAudioSource = GetComponent<AudioSource>();
         gunAudioSource = transform.Find("Audio Source").gameObject.GetComponent<AudioSource>();
     }
- 
+    public void Fire(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            StartCoroutine(Shoot());
+
+            Debug.Log("Fire!");
+        }
+    }
     public void Reload()
     {
 
@@ -50,14 +58,15 @@ public class Gun : MonoBehaviour
         spreadDirection.z += UnityEngine.Random.Range(-maxSpread, maxSpread);
         return spreadDirection;
     }
-  
-    public virtual IEnumerator Shoot(float damageModifier)
+    
+    public virtual IEnumerator Shoot()
     {
-        float dmg = damage * damageModifier;
+        
         if (allowFire)
         {
             
             allowFire = false;
+
             for (int i = 0; i < projectilesPerShot; i++)
             {
                 ///ShootRay(S)
@@ -74,14 +83,14 @@ public class Gun : MonoBehaviour
                     Health targetHealth = hit.transform.GetComponent<Health>();
                     if (targetHealth != null)
                     {
-                        targetHealth.takeDamage(dmg);
+                        targetHealth.takeDamage(damage);
                     }
                     GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
                     Destroy(impact, 2f);
 
                 }
             }
-            Debug.Log("Fire!"+dmg);
+            Debug.Log("Fire!");
             
             yield return new WaitForSeconds(rateOfFire);
             allowFire = true;
