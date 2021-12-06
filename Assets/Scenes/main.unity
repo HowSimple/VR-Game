@@ -6419,6 +6419,7 @@ MonoBehaviour:
   reloadTime: 0
   rateOfFire: 0.1
   allowFire: 1
+  isHitscan: 1
 --- !u!54 &753502981
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7434,7 +7435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20ecdf313889b8a488126552dc1b6c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 50
+  healthPoints: 500
   maxHP: 0
   healthRegenEnabled: 0
   regenRate: 3
@@ -9481,6 +9482,7 @@ MonoBehaviour:
   wavesCompleted: 0
   timeBetweenWaves: 10
   wavesRemaining: 5
+  currentWave: 0
   player: {fileID: 973506798}
   aliveEnemies: []
   waveUI: {fileID: 1577114990}
@@ -10014,6 +10016,7 @@ MonoBehaviour:
   reloadTime: 0
   rateOfFire: 0
   allowFire: 1
+  isHitscan: 1
   projectile: {fileID: 8592397324493377132, guid: f56e5c06a45fd4a4792f999ff65b8701,
     type: 3}
   initialSpeed: 0
