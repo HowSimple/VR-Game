@@ -358,7 +358,8 @@ public class EnemyNPC : MonoBehaviour
                     if (mDistanceToNearestEnemy < mAttackDistance)
                     {
                         //turn towards target
-                        npc.gunController.ShootGun(npc.damageModifier);
+                        //npc.gunController.ShootGun(npc.damageModifier);
+                        npc.Attack();
                         Debug.Log("SHOOTING ENEMY");
                         // StartCoroutine(gunController.activeWeapon.Shoot()); 
                         PlayAnimation(StateTypes.ATTACK);

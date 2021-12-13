@@ -33,6 +33,24 @@ public class Character : MonoBehaviour
         //defenseModifier = 1;
         //speedModifier = 1;
     }
+      public AudioClip hurtSound;
+      public AudioClip hitSound;
+    void OnTriggerEnter(Collider col)
+    {
+        //&& hp.healthPoints< hp.maxHP
+        if (col.gameObject.tag == "Rocket" )
+            {
+                    hp.takeDamage(5);
+                    Destroy(col.gameObject);
+                    audio.volume = 0.6f;
+                    audio.PlayOneShot(hurtSound);
+            }
+    }
+    public void Attack()
+    {
+        gunController.ShootGun(damageModifier);
+
+    }
     public void addUpgrade(float damage, float defense, float speed)
     {
         damageModifier+= damage;
