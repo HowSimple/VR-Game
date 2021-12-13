@@ -12,7 +12,6 @@ public class Gun : MonoBehaviour
     public float maxSpread = 0;
     public float projectilesPerShot = 1;
 
-
     public ParticleSystem muzzleFlash;
     public GameObject muzzle;
     public GameObject impactEffect;
@@ -23,25 +22,18 @@ public class Gun : MonoBehaviour
     public int loadedAmmo;
     public int magazineSize;
     public int carriedAmmo;
-    
 
     public float reloadTime;
 
     public float rateOfFire;
     public bool allowFire = true;
-    public bool isHitscan = true;
+    public bool isHitscan;
     public void Start() { 
         allowFire = true; 
         gunAudioSource = transform.Find("Audio Source").gameObject.GetComponent<AudioSource>();
     }
  
-    public void Reload()
-    {
 
-        int ammo = Math.Min(carriedAmmo, magazineSize);
-        carriedAmmo -= ammo;
-        loadedAmmo = ammo;
-    }
     private Vector3 Spread()
     {
         Vector3 spreadDirection = muzzle.transform.forward;
@@ -50,28 +42,23 @@ public class Gun : MonoBehaviour
         spreadDirection.z += UnityEngine.Random.Range(-maxSpread, maxSpread);
         return spreadDirection;
     }
-    public virtual IEnumerator Shoot()
+    public virtual IEnumerator ShootGun()
     {
-        yield return Shoot(1);
+        yield return ShootGun(1);
     }
-    
-    public virtual IEnumerator Shoot(float damageModifier)
+     private void ShootProjectile(Vector3 spreadDirection)
     {
-        float dmg = damage * damageModifier;
-        if (allowFire)
-        {
-            
-            allowFire = false;
-            for (int i = 0; i < projectilesPerShot; i++)
-            {
-                ///ShootRay(S)
-                Vector3 spreadDirection = Spread();
-                RaycastHit hit;
-                muzzleFlash.Play();
-                gunAudioSource.volume = 0.2f;
-                gunAudioSource.PlayOneShot(gunshotAudio);
-                Debug.DrawRay(muzzle.transform.position, spreadDirection * range, Color.green);
-                if (Physics.Raycast(muzzle.transform.position, spreadDirection, out hit, range))
+        GameObject p = Instantiate(projectile, muzzle.transform.position, muzzle.transform.rotation) ;
+        p.SetActive(true);
+       // p.velocity = muzzle.transform.forward * initialSpeed;
+        p.GetComponent<Rigidbody>().velocity = p.transform.forward * initialSpeed;
+       p.GetComponent<Rigidbody>().freezeRotation = true;
+    }
+    private void ShootRaycast(Vector3 direction)
+    {
+        RaycastHit hit;
+        Debug.DrawRay(muzzle.transform.position, spreadDirection * range, Color.green);
+        if (Physics.Raycast(muzzle.transform.position, spreadDirection, out hit, range))
                 {
                     Debug.Log(hit.transform.name);
 
@@ -84,6 +71,29 @@ public class Gun : MonoBehaviour
                     Destroy(impact, 2f);
 
                 }
+    }
+    public virtual IEnumerator ShootGun(float damageModifier)
+    {
+        float dmg = damage * damageModifier;
+        if (allowFire)
+        {
+             
+            allowFire = false;
+
+            for (int i = 0; i < projectilesPerShot; i++)
+            {
+                Vector3 spreadDirection = Spread();
+                if (isHitscan)
+                    ShootRaycast(spreadDirection);
+                else
+                    ShootProjectile(spreadDirection);
+                ///ShootRay(S)
+                
+                
+                muzzleFlash.Play();
+                gunAudioSource.volume = 0.2f;
+                gunAudioSource.PlayOneShot(gunshotAudio);
+                
             }
             Debug.Log("Fire!"+dmg);
             
@@ -95,6 +105,12 @@ public class Gun : MonoBehaviour
         
     }
 
-        
+    public void Reload()
+    {
+
+        int ammo = Math.Min(carriedAmmo, magazineSize);
+        carriedAmmo -= ammo;
+        loadedAmmo = ammo;
+    }
         
 }
