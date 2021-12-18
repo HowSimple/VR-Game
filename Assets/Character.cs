@@ -42,8 +42,8 @@ public class Character : MonoBehaviour
             {
                     hp.takeDamage(5);
                     Destroy(col.gameObject);
-                    audio.volume = 0.6f;
-                    audio.PlayOneShot(hurtSound);
+                    GetComponent<AudioSource>().volume = 0.6f;
+                    GetComponent<AudioSource>().PlayOneShot(hurtSound);
             }
     }
     public void Attack()
