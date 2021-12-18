@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
     public float healthPoints = 50f;
     public float maxHP;
     public bool healthRegenEnabled = false;
+    
     public float regenRate;
     public float regenDelay;
     public GameObject healingItemDrop;
