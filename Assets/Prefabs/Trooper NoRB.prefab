@@ -1076,6 +1076,8 @@ MonoBehaviour:
   damageModifier: 0
   defenseModifier: 0
   speedModifier: 0
+  hurtSound: {fileID: 0}
+  hitSound: {fileID: 0}
 --- !u!114 &4532295644852787093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3201,6 +3203,11 @@ PrefabInstance:
         type: 3}
       propertyPath: damage
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019607504589453252, guid: ce95070b46b99494bac28682f393155b,
+        type: 3}
+      propertyPath: isHitscan
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2019607504589453252, guid: ce95070b46b99494bac28682f393155b,
         type: 3}

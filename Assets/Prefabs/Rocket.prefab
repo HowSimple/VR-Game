@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8589584279074902296}
   - component: {fileID: 8596933548177978104}
   - component: {fileID: 8604493662729861602}
-  m_Layer: 4
+  m_Layer: 11
   m_Name: Rocket_Luncher_Missile_B_Fins03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 8590040935200647806}
   - component: {fileID: 8593942565924919454}
   - component: {fileID: 8604190062228224670}
-  m_Layer: 4
+  m_Layer: 11
   m_Name: Rocket_Luncher_Missile_B_Fins04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,8 @@ GameObject:
   - component: {fileID: 8591634414949913019}
   - component: {fileID: 8591634414949913018}
   - component: {fileID: 8591634414949913022}
-  m_Layer: 4
+  - component: {fileID: -7849244382550260382}
+  m_Layer: 11
   m_Name: Rocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,9 +263,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  maxSpread: 0
-  projectilesPerShot: 1
+  blastRadius: 0
   body: {fileID: 8591634414949913019}
+  initialSpeed: 0.05
+  turningSpeed: 0
+  targetTag: Player
+  isHoming: 1
+--- !u!114 &-7849244382550260382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8592397324493377132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20ecdf313889b8a488126552dc1b6c5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 1
+  maxHP: 0
+  healthRegenEnabled: 0
+  regenRate: 0
+  regenDelay: 0
+  healingItemDrop: {fileID: 0}
 --- !u!1 &8592440175862924958
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +298,7 @@ GameObject:
   - component: {fileID: 8587099162049314894}
   - component: {fileID: 8596920294182054750}
   - component: {fileID: 8604540045490923162}
-  m_Layer: 4
+  m_Layer: 11
   m_Name: Rocket_Luncher_Missile_B_Fins02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +379,7 @@ GameObject:
   - component: {fileID: 8589520075178319110}
   - component: {fileID: 8596401228742240086}
   - component: {fileID: 8604256863522431280}
-  m_Layer: 4
+  m_Layer: 11
   m_Name: Rocket_Luncher_Missile_B_Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,7 +460,7 @@ GameObject:
   - component: {fileID: 8589912474107065854}
   - component: {fileID: 8596304137470678398}
   - component: {fileID: 8606279215927425152}
-  m_Layer: 4
+  m_Layer: 11
   m_Name: Rocket_Luncher_Missile_B_Fins01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
