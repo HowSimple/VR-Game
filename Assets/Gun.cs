@@ -13,6 +13,7 @@ public class Gun : MonoBehaviour
     public float projectilesPerShot = 1;
 
     public ParticleSystem muzzleFlash;
+
     public GameObject muzzle;
     public GameObject impactEffect;
 
@@ -28,6 +29,8 @@ public class Gun : MonoBehaviour
     public float rateOfFire;
     public bool allowFire = true;
     public bool isHitscan;
+
+    public GameObject projectile;
     public void Start() { 
         allowFire = true; 
         gunAudioSource = transform.Find("Audio Source").gameObject.GetComponent<AudioSource>();
@@ -46,19 +49,21 @@ public class Gun : MonoBehaviour
     {
         yield return ShootGun(1);
     }
-     private void ShootProjectile(Vector3 spreadDirection)
+     private void ShootProjectile(Vector3 direction, float damageModifier)
     {
+        float dmg = damage * damageModifier;
         GameObject p = Instantiate(projectile, muzzle.transform.position, muzzle.transform.rotation) ;
         p.SetActive(true);
        // p.velocity = muzzle.transform.forward * initialSpeed;
-        p.GetComponent<Rigidbody>().velocity = p.transform.forward * initialSpeed;
+        p.GetComponent<Rigidbody>().velocity = p.transform.forward * p.GetComponent<Projectile>().speed;
        p.GetComponent<Rigidbody>().freezeRotation = true;
     }
-    private void ShootRaycast(Vector3 direction)
+    private void ShootRaycast(Vector3 direction, float damageModifier)
     {
+        float dmg = damage * damageModifier;
         RaycastHit hit;
-        Debug.DrawRay(muzzle.transform.position, spreadDirection * range, Color.green);
-        if (Physics.Raycast(muzzle.transform.position, spreadDirection, out hit, range))
+        Debug.DrawRay(muzzle.transform.position, direction * range, Color.green);
+        if (Physics.Raycast(muzzle.transform.position, direction, out hit, range))
                 {
                     Debug.Log(hit.transform.name);
 
@@ -84,9 +89,9 @@ public class Gun : MonoBehaviour
             {
                 Vector3 spreadDirection = Spread();
                 if (isHitscan)
-                    ShootRaycast(spreadDirection);
+                    ShootRaycast(spreadDirection,damageModifier);
                 else
-                    ShootProjectile(spreadDirection);
+                    ShootProjectile(spreadDirection,damageModifier);
                 ///ShootRay(S)
                 
                 
@@ -112,5 +117,8 @@ public class Gun : MonoBehaviour
         carriedAmmo -= ammo;
         loadedAmmo = ammo;
     }
+
+
+
         
 }
